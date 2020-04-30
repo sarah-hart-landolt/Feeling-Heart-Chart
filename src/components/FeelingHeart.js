@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-// import {Dashboard} from "./Dashboard"
+import {Dashboard} from "./Dashboard"
 import {Auth} from "./auth/Auth"
 
 export const FeelingHeart = () => {
@@ -7,8 +7,6 @@ export const FeelingHeart = () => {
     const toggle = () => update(!check)
 
     return (
-         <Auth toggle={toggle} />
+        localStorage.getItem("feelingHeart_customer") ? <Dashboard /> : <Auth toggle={toggle} />
     )
 }
-
-// localStorage.getItem("feelingHeart_customer") ? <Dashboard />

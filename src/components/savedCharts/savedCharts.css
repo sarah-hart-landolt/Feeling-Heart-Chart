@@ -1,0 +1,16 @@
+.savedChartsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.savedChartCard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.savedChartCard__savedChartPreview {
+    width: 40%;
+    height: 40%;
+    }

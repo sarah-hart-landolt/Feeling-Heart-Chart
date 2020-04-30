@@ -39,8 +39,8 @@ const Register = props => {
                     })
                         .then(_ => _.json())
                         .then(createdUser => {
-                            if (createdUser.hasOwnProperty("id")) {
-                                localStorage.setItem("feelingHeart_customer", createdUser.id)
+                            if (createdUser.hasOwnProperty("id") && (createdUser.hasOwnProperty("firstName"))) {
+                                localStorage.setItem("feelingHeart_customer", createdUser.id, createdUser.firstName)
                                 props.toggle()
                             }
                         })
