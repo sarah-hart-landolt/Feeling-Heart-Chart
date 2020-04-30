@@ -22,3 +22,8 @@
 .icon--delete {
     padding-left: 0.5rem;
 }
+
+.homepage_view {
+    display: flex;
+    flex-direction: row;
+}

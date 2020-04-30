@@ -1,25 +1,26 @@
-import React, { useState } from "react"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
+import React, { useContext } from "react"
+import { Button } from "reactstrap"
+import { EmotionContext } from "../images/ImageProvider"
+import { EmotionCard } from "./EmotionCard"
 
 export const FHChartList = () => {
 
-    const [modal, setModal] = useState(false)
-    const toggle = () => setModal(!modal)
+    // const toggle = () => setModal(!modal)
+    const { emotions } = useContext(EmotionContext)
+
 
     return (
         <>
             <article className="FHChartList">
             <h2>Feeling Heart</h2>
-            <Button onClick={toggle}>Save Chart</Button>
+            <div className="emotions">
+        {
+            emotions.map(emo => <EmotionCard key={emo.id} emotion={emo} />)
+        }
+             </div>
+            <Button>Save Chart</Button>
             </article>
-{/* 
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>
-                </ModalHeader>
-                <ModalBody>
-                    <EmployeeForm toggler={toggle} />
-                </ModalBody>
-            </Modal> */}
+
         </>
     )
     }

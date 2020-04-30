@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react"
 import "./Dashboard.css"
 import { Homepage } from "./Homepage"
 import { FHChartList } from "./customizeCharts/FHChartList"
+import { EmotionProvider } from "./images/ImageProvider"
 
 export const Dashboard = () => {
     const [activeList, setActiveList] = useState("homepage_view")
     const [components, setComponents] = useState()
 
     const showHomepage= () => (
-        <Homepage />
+        <Homepage setActiveList={setActiveList}/>
     )
 
     const showFHChartList= () => (
@@ -41,7 +42,10 @@ export const Dashboard = () => {
                 <div className="fakeLink href" onClick={() => setActiveList("FHChartList")}>Make New Chart</div>
             </div>
             <div className="listDisplay">
+            <EmotionProvider>
                  {components}
+            </EmotionProvider>
+                       
             </div>
         </div>
     </>

@@ -2,12 +2,12 @@ import React from "react"
 import { MakeFHChartPreviewList } from "./customizeCharts/MakeFHChartPreview"
 import { SavedChartList } from "./savedCharts/SavedChartList"
 
-export const Homepage = () => (
+export const Homepage = (props) => (
 
     <>
         <article className="homepage_view">
             <div> <SavedChartList /></div>
-            <div><MakeFHChartPreviewList /></div>
+            <div><MakeFHChartPreviewList setActiveList={props.setActiveList}/></div>
         </article>
     </>
 
