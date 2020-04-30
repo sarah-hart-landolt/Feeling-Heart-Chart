@@ -1,0 +1,10 @@
+.MakeFHChartPreview {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+.feelingHeart_img {
+  width: 25%;
+  height: 25%;
+  }
