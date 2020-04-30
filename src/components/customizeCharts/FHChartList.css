@@ -1,0 +1,14 @@
+.emotions {
+    flex-basis: 65%;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5%;
+}
+
+.emotion {
+  border: 1px solid black;
+  flex-basis: 20%;
+  padding: 1em;
+  min-width: 200px;
+}

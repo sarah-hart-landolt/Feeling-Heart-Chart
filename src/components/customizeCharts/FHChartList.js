@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { Button } from "reactstrap"
 import { EmotionContext } from "../images/ImageProvider"
 import { EmotionCard } from "./EmotionCard"
+import "./FHChartList.css"
 
 export const FHChartList = () => {
 

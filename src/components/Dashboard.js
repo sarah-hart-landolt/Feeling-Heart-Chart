@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import "./Dashboard.css"
 import { Homepage } from "./Homepage"
 import { FHChartList } from "./customizeCharts/FHChartList"
 import { EmotionProvider } from "./images/ImageProvider"
+import { UserContext } from "./auth/UserProvider"
+
+
 
 export const Dashboard = () => {
     const [activeList, setActiveList] = useState("homepage_view")
     const [components, setComponents] = useState()
-
+    const { users } = useContext(UserContext)
+    let activeUserID = parseInt(localStorage.getItem("feelingHeart_customer"))
+    const activeUser= users.find(user=> user.id ===activeUserID) || {}
+    
     const showHomepage= () => (
         <Homepage setActiveList={setActiveList}/>
     )
@@ -29,12 +35,13 @@ export const Dashboard = () => {
     return  (
     <>
         <div className="mainContainer">
-             <div className="searchContainer">
+             <div className="dashboardContainer">
              {showHomepage}
              {showFHChartList}
             </div>
+           
         </div>
-        <h1>How are you feeling today {localStorage.getItem("feelingHeart_customer")}?</h1>
+        <h1>How are you feeling today, {activeUser.firstName}?</h1>
         <small>your feelings are valid.</small>
         <div className="listContainer">
             <div className="links">

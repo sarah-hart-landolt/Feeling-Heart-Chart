@@ -1,4 +1,5 @@
 import React from "react"
+import "./FHChartList.css"
 
 export const EmotionCard = ({ emotion }) => ( 
     <section className="emotion">
