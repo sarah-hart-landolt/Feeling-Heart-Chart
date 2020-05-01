@@ -4,40 +4,40 @@ import React, { useState, useEffect } from "react"
     The context is imported and used by individual components
     that need data
 */
-export const EmotionContext = React.createContext()
+export const ImageContext = React.createContext()
 
 /*
  This component establishes what data can be used.
  */
-export const EmotionProvider = (props) => {
-    const [emotions, setEmotions] = useState([])
+export const ImageProvider = (props) => {
+    const [images, setImages] = useState([])
     
-const getEmotions = () => {
-    return fetch("http://localhost:8090/emotions")
+const getImages = () => {
+    return fetch("http://localhost:8090/images")
             .then(res => res.json())
-            .then(setEmotions)
+            .then(setImages)
     }
 
 
     /*
-        Load all Emotions when the component is mounted. Ensure that
+        Load all Images when the component is mounted. Ensure that
         an empty array is the second argument to avoid infinite loop.
     */
     useEffect(() => {
-        getEmotions()
+        getImages()
     }, [])
 
     useEffect(() => {
-        console.log("****  LOCATION APPLICATION STATE CHANGED  ****")
-    }, [emotions])
+        console.log("****  IMAGE APPLICATION STATE CHANGED  ****")
+    }, [images])
 
     return (
-        <EmotionContext.Provider value={
+        <ImageContext.Provider value={
             {
-                emotions
+                images
             }
         }>
             {props.children}
-        </EmotionContext.Provider>
+        </ImageContext.Provider>
     )
     }

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from "react"
 import "./Dashboard.css"
 import { Homepage } from "./Homepage"
 import { FHChartList } from "./customizeCharts/FHChartList"
-import { EmotionProvider } from "./images/ImageProvider"
+import { EmotionProvider } from "./customizeCharts/EmotionProvider"
 import { UserContext } from "./auth/UserProvider"
+import { ImageProvider } from "./images/ImageProvider"
 
 
 
@@ -19,7 +20,9 @@ export const Dashboard = () => {
     )
 
     const showFHChartList= () => (
+    // <ImageProvider>
         <FHChartList />
+    //  </ImageProvider>
     )
 
     useEffect(() => {
@@ -36,8 +39,12 @@ export const Dashboard = () => {
     <>
         <div className="mainContainer">
              <div className="dashboardContainer">
+             <EmotionProvider>
+                {/* <ImageProvider> */}
              {showHomepage}
              {showFHChartList}
+             {/* </ImageProvider> */}
+            </EmotionProvider>
             </div>
            
         </div>
@@ -50,7 +57,9 @@ export const Dashboard = () => {
             </div>
             <div className="listDisplay">
             <EmotionProvider>
-                 {components}
+                <ImageProvider>
+                     {components}
+                </ImageProvider>
             </EmotionProvider>
                        
             </div>
