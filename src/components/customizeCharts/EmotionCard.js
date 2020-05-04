@@ -1,9 +1,21 @@
 import React from "react"
 import "./FHChartList.css"
 
-export const EmotionCard = ({ emotion }) => ( 
-    // <section className="emotion">
-        <h3 className="emotion__name">{emotion.emotion}</h3>
-    // </section>
+export const EmotionCard = ({ emotion, foundImage }) => {
+        if (foundImage) {
+            return (
+                <section className="emotion">
+            <div><img class="emotionImage" src={`${foundImage.url}`}/></div>
+            <div>{emotion.emotion}</div>
+            </section>)
+            debugger
+        } else {
+          return (
+          <section className="emotion">
+          <h3 className="emotion__name">Click to Choose Your {`${emotion.emotion}`}</h3>
+          <div>{emotion.emotion}</div>
+          </section>)
+        }
 
-)
+
+}

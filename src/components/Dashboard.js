@@ -5,6 +5,8 @@ import { FHChartList } from "./customizeCharts/FHChartList"
 import { EmotionProvider } from "./customizeCharts/EmotionProvider"
 import { UserContext } from "./auth/UserProvider"
 import { ImageProvider } from "./images/ImageProvider"
+import { SavedChartImageProvider } from "./savedCharts/SavedChartImageProvider"
+import { SavedChartProvider } from "./savedCharts/SavedChartProvider"
 
 
 
@@ -40,10 +42,10 @@ export const Dashboard = () => {
         <div className="mainContainer">
              <div className="dashboardContainer">
              <EmotionProvider>
-                {/* <ImageProvider> */}
+                <ImageProvider>
              {showHomepage}
              {showFHChartList}
-             {/* </ImageProvider> */}
+             </ImageProvider>
             </EmotionProvider>
             </div>
            
@@ -56,11 +58,17 @@ export const Dashboard = () => {
                 <div className="fakeLink href" onClick={() => setActiveList("FHChartList")}>Make New Chart</div>
             </div>
             <div className="listDisplay">
-            <EmotionProvider>
-                <ImageProvider>
+            <ImageProvider>
+             <EmotionProvider>
+                    <SavedChartImageProvider>   
+                        <SavedChartProvider>
                      {components}
-                </ImageProvider>
+                       </SavedChartProvider>
+                    </SavedChartImageProvider>
             </EmotionProvider>
+            </ImageProvider>
+           
+
                        
             </div>
         </div>

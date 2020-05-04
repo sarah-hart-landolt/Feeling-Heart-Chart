@@ -1,18 +1,36 @@
-import React, { useState } from "react"
+import React, {useContext} from "react"
 import { Button } from "reactstrap"
 import feelingheart from "../auth/feelingheart.png"
 import  "./MakeFHChartPreview.css"
-import { FHChartList } from "./FHChartList"
+import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 
 
 export const MakeFHChartPreviewList = (props) => {
+    const { addSavedChart } = useContext(SavedChartContext)
+
+
+    const saveChart = () => {
+        // create a new saved chart object
+        // Make sure that the saved chart object has the customerId and locationId foreign keys on it.
+        const newSavedChartObj = {
+            userId: parseInt(localStorage.getItem("feelingHeart_customer")),
+            timestamp: Date.now(),
+            price: "$70"
+        }       
+        
+        console.log(newSavedChartObj)
+        // and save it to the API.
+        addSavedChart(newSavedChartObj)
+
+    }
 
     return (
         <>
             <article className="MakeFHChartPreview">
             <h2>Make your own Feeling Chart !</h2>
             <img className="feelingHeart_img" src={feelingheart} />
-            <Button onClick={()=> props.setActiveList("FHChartList")}>Make Chart</Button>
+            <Button onClick={()=>{saveChart() 
+                                 props.setActiveList("FHChartList")}}>Make Chart</Button>
             </article>
         </>
     )

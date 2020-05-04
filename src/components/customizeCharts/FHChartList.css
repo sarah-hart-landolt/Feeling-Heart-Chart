@@ -10,8 +10,14 @@
 
 .emotion {
   border: 1px solid black;
-  flex-basis: 20%;
+  /* flex-basis: 20%; */
   padding: 1em;
-  /* width: 25%; */
-  /* min-width: 200px; */
+}
+
+/* .emotion__image{
+  display: flex;
+} */
+.emotionImage{
+  width: 60%;
+  height: 60%;
 }

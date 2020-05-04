@@ -17,7 +17,7 @@ const releaseSavedChart = savedChartId => {
         return fetch(`http://localhost:8090/savedCharts/${savedChartId}`, {
             method: "DELETE"
         })
-            .then(getsavedCharts)
+            .then(getSavedCharts)
     }
 const getSavedCharts = () => {
     return fetch("http://localhost:8090/savedCharts")

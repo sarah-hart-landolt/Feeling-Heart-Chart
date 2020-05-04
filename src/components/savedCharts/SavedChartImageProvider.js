@@ -17,7 +17,7 @@ const releaseSavedChartImage = savedChartImageId => {
         return fetch(`http://localhost:8090/savedChartImages/${savedChartImageId}`, {
             method: "DELETE"
         })
-            .then(getsavedChartImages)
+            .then(getSavedChartImages)
     }
 const getSavedChartImages = () => {
     return fetch("http://localhost:8090/savedChartImages")
