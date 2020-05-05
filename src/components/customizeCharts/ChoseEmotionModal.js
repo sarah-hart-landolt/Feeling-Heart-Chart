@@ -1,24 +1,26 @@
 import React, { useContext, useState } from "react"
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap"
+import { Button } from "reactstrap"
 import "./FHChartList.css"
 import { ImageContext } from "../images/ImageProvider"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
+import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 
 
 
-export const ChooseEmotionModal = ({ emotion, toggler, setSelectedEmotionPainting }) => {
-    const [modal, setModal] = useState(false)
+export const ChooseEmotionModal = ({ emotion, toggler }) => {
 
     const { addSavedChartImage } = useContext(SavedChartImageContext)
     const { images } = useContext(ImageContext)
     const imageArray = images.filter(img => img.emotionId === emotion.id)
+    const {newSavedCharts} = useContext(SavedChartContext)
     // const {emotions} = useContext(EmotionContext)
 
     const savePaintingRelationship = (imageObject) => {
         // const foundEmotion = emotions.find(emo=> emo.id === imageObject.emotionId)
         const newSavedChartImage = {
             imageId: imageObject.id,
-            emotionId: imageObject.emotionId
+            emotionId: imageObject.emotionId,
+            savedChartId: newSavedCharts.id
 
         }       
         
@@ -44,13 +46,6 @@ export const ChooseEmotionModal = ({ emotion, toggler, setSelectedEmotionPaintin
                             toggler()}}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
                     })
                 }
-            {/* <Modal isOpen={modal} toggler={toggler}>
-                <ModalHeader toggler={toggler}>
-                </ModalHeader>
-                <ModalBody>
-                    <EmotionCard imageObject= {selectedEmotionPainting} />
-                </ModalBody>
-            </Modal> */}
 
             </section>
         </>

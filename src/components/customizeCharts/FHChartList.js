@@ -6,6 +6,7 @@ import "./FHChartList.css"
 import { EmotionContext } from "./EmotionProvider"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { ImageContext } from "../images/ImageProvider"
+import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 
 // define all states here. in modal, pass down each state
 export const FHChartList = () => {
@@ -16,8 +17,7 @@ export const FHChartList = () => {
     const {images } = useContext(ImageContext)
     const { savedChartImages } = useContext(SavedChartImageContext)
     const [selectedEmotion, setSelectedEmotion] = useState()
-    const [selectedEmotionPainting, setSelectedEmotionPainting] = useState(null)
-
+    const { newSavedCharts }= useContext(SavedChartContext)
 
 
 
@@ -29,14 +29,15 @@ export const FHChartList = () => {
         {
             emotions.map(emo => {
                 // Find if there are any saved images for this emotion
-               const savedChartImage= savedChartImages.find(savedChartImageObj=>savedChartImageObj.emotionId ===emo.id) || {}
+               const filteredSavedChartImages= savedChartImages.filter(savedChImg=>savedChImg.savedChartId ===newSavedCharts.id )
+               const savedChartImage= filteredSavedChartImages.find(filteredSavedChartImageObj=>filteredSavedChartImageObj.emotionId ===emo.id) || {}
                const foundImage = images.find(image=>image.id===savedChartImage.imageId) || {}
 
             return <div className= {`${emo.emotion} emotion`} onClick={()=>{
-                setSelectedEmotionPainting(null)
+                // setSelectedEmotionPainting(null)
                 setSelectedEmotion(emo)
                 toggle()}}>
-            <EmotionCard key={emo.id} emotion={emo} foundImage={foundImage}  />
+            <EmotionCard key={emo.id} emotion={emo} foundImage={foundImage} />
             </div>})
 
             }
@@ -49,11 +50,12 @@ export const FHChartList = () => {
                 Choose Your Emotion
                 </ModalHeader>
                 <ModalBody>
-                    <ChooseEmotionModal toggler={toggle} emotion= {selectedEmotion} setSelectedEmotionPainting= {setSelectedEmotionPainting}/>
+                    <ChooseEmotionModal toggler={toggle} emotion= {selectedEmotion} />
                 </ModalBody>
             </Modal>
 
         </>
+        // setSelectedEmotionPainting= {setSelectedEmotionPainting}
     )
 
 
