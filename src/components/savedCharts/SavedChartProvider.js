@@ -27,7 +27,7 @@ const getSavedCharts = () => {
     }
 
 const updateSavedChart = savedChart => {
-        return fetch(`http://localhost:8088/savedCharts/${savedChart.id}`, {
+        return fetch(`http://localhost:8090/savedCharts/${savedChart.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

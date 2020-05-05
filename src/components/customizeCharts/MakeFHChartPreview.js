@@ -16,7 +16,8 @@ export const MakeFHChartPreviewList = (props) => {
         const newSavedChartObj = {
             userId: parseInt(localStorage.getItem("feelingHeart_customer")),
             timestamp: Date.now(),
-            price: "$70"
+            price: "$70",
+            name: ""
         }       
         
         console.log(newSavedChartObj)

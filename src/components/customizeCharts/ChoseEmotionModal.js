@@ -11,7 +11,7 @@ export const ChooseEmotionModal = ({ emotion, toggler }) => {
 
     const { addSavedChartImage } = useContext(SavedChartImageContext)
     const { images } = useContext(ImageContext)
-    const imageArray = images.filter(img => img.emotionId === emotion.id)
+    const imageArray = images.filter(img => img.emotionId === emotion.id) || {}
     const {newSavedCharts} = useContext(SavedChartContext)
     // const {emotions} = useContext(EmotionContext)
 

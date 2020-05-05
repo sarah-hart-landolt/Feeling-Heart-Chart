@@ -22,9 +22,7 @@ export const Dashboard = () => {
     )
 
     const showFHChartList= () => (
-    // <ImageProvider>
-        <FHChartList />
-    //  </ImageProvider>
+        <FHChartList setActiveList={setActiveList} />
     )
 
     useEffect(() => {
