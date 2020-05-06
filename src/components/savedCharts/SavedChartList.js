@@ -10,14 +10,15 @@ export const SavedChartList = () => {
 
 
     return (
-     <>
+     <> <article className="savedChartsList">
         <h2>My Saved Charts</h2>
-        
-        <div className="savedChartsList">
-        {
-            foundSavedCharts.map(foundSavedChart => <SavedChartCard key={foundSavedChart.id} foundSavedChart={foundSavedChart} />)
-        }
-        </div>
+        <br></br>
+            <div>
+            {
+                foundSavedCharts.map(foundSavedChart => <SavedChartCard key={foundSavedChart.id} foundSavedChart={foundSavedChart} />)
+            }
+            </div>
+        </article>
      </>
     )
 }

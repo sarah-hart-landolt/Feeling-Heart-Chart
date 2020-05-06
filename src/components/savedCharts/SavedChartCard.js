@@ -4,16 +4,23 @@ import feelingheart from "../auth/feelingheart.png"
 import { Button} from "reactstrap"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { SavedChartPreview } from "./SavedChartPreview"
+import { format, fromUnixTime } from 'date-fns'
+import { SavedChartContext } from "./SavedChartProvider"
+
 
 
 export const SavedChartCard = ({foundSavedChart}) => {
     const { savedChartImages } = useContext(SavedChartImageContext)
+    const { deleteSavedChart } = useContext(SavedChartContext)
     const foundSavedChartImages = savedChartImages.filter(savedChartImage=>savedChartImage.savedChartId === foundSavedChart.id)
+    const readableDate = () => format(fromUnixTime(Math.floor(foundSavedChart.timestamp/1000)), "MM/dd/yyyy")
+  
+  
     if (foundSavedChart.hasOwnProperty("name")) {
         return (
             <section className="savedChartCard">
                 <h3 className="savedChartCard__name">{foundSavedChart.name}</h3>
-                <div className="savedChartCard__date">{foundSavedChart.timestamp}</div>
+                <div className="savedChartCard__date">{readableDate()}</div>
                 <div className="savedChartPreview">
                     {
                 foundSavedChartImages.map(fSCI => { 
@@ -22,7 +29,7 @@ export const SavedChartCard = ({foundSavedChart}) => {
             }
                 </div>
                 <div className="savedChartCard__buttons">
-                    <Button>Delete</Button>
+                    <Button onClick={() => deleteSavedChart(foundSavedChart.id)}>Delete</Button> 
                     <Button>Edit</Button>
                 </div>
             </section>

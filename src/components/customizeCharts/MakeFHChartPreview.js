@@ -31,10 +31,10 @@ export const MakeFHChartPreviewList = (props) => {
     return (
         <>
             <article className="MakeFHChartPreview">
-            <h2>Make your own Feeling Chart !</h2>
-            <img className="feelingHeart_img" src={feelingheart} />
-            <Button onClick={()=>{saveChart() 
-                                 props.setActiveList("FHChartList")}}>Make Chart</Button>
+                <h2>Make your own Feeling Chart !</h2>
+                <img className="feelingHeart_img" src={feelingheart} />
+                <Button onClick={()=>{saveChart() 
+                                    props.setActiveList("FHChartList")}}>Make New Chart</Button>
             </article>
         </>
     )

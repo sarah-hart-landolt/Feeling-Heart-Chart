@@ -13,11 +13,12 @@
   padding: 1em;
 }
 
-/* .emotion__image{
-  display: flex;
-} */
 .emotionImage{
   border: 1px solid black;
   width: 60%;
   height: 60%;
+}
+
+.emotion__imageView{
+  width: 170px;
 }

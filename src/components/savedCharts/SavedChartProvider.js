@@ -14,7 +14,7 @@ export const SavedChartProvider = (props) => {
     const [newSavedCharts, setNewSavedCharts]= useState([])
     
     
-const releaseSavedChart = savedChartId => {
+const deleteSavedChart = savedChartId => {
         return fetch(`http://localhost:8090/savedCharts/${savedChartId}`, {
             method: "DELETE"
         })
@@ -70,7 +70,7 @@ const addSavedChart = savedChart => {
     return (
         <SavedChartContext.Provider value={
             {
-                savedCharts, addSavedChart, releaseSavedChart, updateSavedChart, newSavedCharts, setNewSavedCharts
+                savedCharts, addSavedChart, deleteSavedChart, updateSavedChart, newSavedCharts, setNewSavedCharts
             }
         }>
             {props.children}

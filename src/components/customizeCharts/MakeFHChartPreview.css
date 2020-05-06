@@ -1,10 +1,15 @@
 .MakeFHChartPreview {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: column;
+    width: 500px;
+    padding: 8%;
+    align-items: center;
   }
 
 .feelingHeart_img {
-  width: 25%;
-  height: 25%;
+  width: 55%;
+  height: 55%;
+  
   }

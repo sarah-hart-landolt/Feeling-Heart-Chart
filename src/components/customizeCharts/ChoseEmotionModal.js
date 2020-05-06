@@ -39,7 +39,7 @@ export const ChooseEmotionModal = ({ emotion, toggler }) => {
             <section className="emotion__image">
                 {
                     imageArray.map(imageObject => {
-                        return <div><img class="emotionImage" src={`${imageObject.url}`} />
+                        return <div><img className="emotionImage" src={`${imageObject.url}`} />
                         <br></br>
                         <Button onClick={()=>{
                             savePaintingRelationship(imageObject)
