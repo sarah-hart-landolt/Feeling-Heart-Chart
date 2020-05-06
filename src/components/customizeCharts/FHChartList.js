@@ -17,7 +17,7 @@ export const FHChartList = (props) => {
     const { images } = useContext(ImageContext)
     const { savedChartImages } = useContext(SavedChartImageContext)
     const [selectedEmotion, setSelectedEmotion] = useState()
-    const { newSavedCharts, updateSavedChart }= useContext(SavedChartContext)
+    const { newSavedChart, updateSavedChart }= useContext(SavedChartContext)
     const chartName= useRef()
 
     const editSavedChart = () => {
@@ -25,9 +25,9 @@ export const FHChartList = (props) => {
         if (chartName.current.value === "") {
             window.alert("Please name your chart")
         } else {
-            console.log(newSavedCharts)
+            console.log(newSavedChart)
             updateSavedChart({
-                id: newSavedCharts.id,
+                id: newSavedChart.id,
                 name: chartName.current.value,
                 userId: parseInt(localStorage.getItem("feelingHeart_customer")),
                 timestamp: Date.now(),
@@ -45,7 +45,7 @@ export const FHChartList = (props) => {
         {
             emotions.map(emo => {
                 // Find if there are any saved images for this emotion
-               const filteredSavedChartImages= savedChartImages.filter(savedChImg=>savedChImg.savedChartId ===newSavedCharts.id ) || {}
+               const filteredSavedChartImages= savedChartImages.filter(savedChImg=>savedChImg.savedChartId ===newSavedChart.id ) || {}
                const savedChartImage= filteredSavedChartImages.find(filteredSavedChartImageObj=>filteredSavedChartImageObj.emotionId ===emo.id) || {}
                const foundImage = images.find(image=>image.id===savedChartImage.imageId) || {}
 

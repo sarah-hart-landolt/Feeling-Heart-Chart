@@ -6,7 +6,7 @@ export const Homepage = (props) => (
 
     <>
         <article className="homepage_view">
-            <div> <SavedChartList /></div>
+            <div> <SavedChartList setActiveList={props.setActiveList}/></div>
             <div><MakeFHChartPreviewList setActiveList={props.setActiveList}/></div>
         </article>
     </>

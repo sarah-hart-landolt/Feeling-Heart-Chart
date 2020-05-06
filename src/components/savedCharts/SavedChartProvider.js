@@ -11,7 +11,7 @@ export const SavedChartContext = React.createContext()
  */
 export const SavedChartProvider = (props) => {
     const [savedCharts, setSavedCharts] = useState([])
-    const [newSavedCharts, setNewSavedCharts]= useState([])
+    const [newSavedChart, setNewSavedChart]= useState({})
     
     
 const deleteSavedChart = savedChartId => {
@@ -70,7 +70,7 @@ const addSavedChart = savedChart => {
     return (
         <SavedChartContext.Provider value={
             {
-                savedCharts, addSavedChart, deleteSavedChart, updateSavedChart, newSavedCharts, setNewSavedCharts
+                savedCharts, addSavedChart, deleteSavedChart, updateSavedChart, newSavedChart, setNewSavedChart
             }
         }>
             {props.children}

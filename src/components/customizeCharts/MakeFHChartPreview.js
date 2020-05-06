@@ -6,7 +6,7 @@ import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 
 
 export const MakeFHChartPreviewList = (props) => {
-    const { addSavedChart, setNewSavedCharts } = useContext(SavedChartContext)
+    const { addSavedChart, setNewSavedChart } = useContext(SavedChartContext)
  
 
 
@@ -23,7 +23,7 @@ export const MakeFHChartPreviewList = (props) => {
         console.log(newSavedChartObj)
         // and save it to the API.
         addSavedChart(newSavedChartObj).then((res) => {
-            setNewSavedCharts(res)
+            setNewSavedChart(res)
         })
 
     }
