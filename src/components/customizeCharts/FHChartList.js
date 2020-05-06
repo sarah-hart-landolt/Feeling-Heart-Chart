@@ -14,7 +14,7 @@ export const FHChartList = (props) => {
     const toggle = () => setModal(!modal)
 
     const { emotions } = useContext(EmotionContext)
-    const {images } = useContext(ImageContext)
+    const { images } = useContext(ImageContext)
     const { savedChartImages } = useContext(SavedChartImageContext)
     const [selectedEmotion, setSelectedEmotion] = useState()
     const { newSavedCharts, updateSavedChart }= useContext(SavedChartContext)
@@ -50,7 +50,6 @@ export const FHChartList = (props) => {
                const foundImage = images.find(image=>image.id===savedChartImage.imageId) || {}
 
             return <div className= {`${emo.emotion} emotion`} onClick={()=>{
-                // setSelectedEmotionPainting(null)
                 setSelectedEmotion(emo)
                 toggle()}}>
             <EmotionCard key={emo.id} emotion={emo} foundImage={foundImage} />
