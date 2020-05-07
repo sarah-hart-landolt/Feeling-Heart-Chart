@@ -26,7 +26,7 @@ const getSavedChartImages = () => {
     }
 
 const updateSavedChartImage = savedChartImage => {
-        return fetch(`http://localhost:8088/savedChartImages/${savedChartImage.id}`, {
+        return fetch(`http://localhost:8090/savedChartImages/${savedChartImage.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

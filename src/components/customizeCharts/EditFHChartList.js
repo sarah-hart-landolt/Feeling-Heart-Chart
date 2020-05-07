@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef} from "react"
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap"
 import { EditEmotionCard } from "./EmotionCard"
-import { ChooseEmotionModal } from "./ChoseEmotionModal"
+import { EditChooseEmotionModal } from "./ChoseEmotionModal"
 import "./FHChartList.css"
 import { EmotionContext } from "./EmotionProvider"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
@@ -20,8 +20,9 @@ export const EditFHChartList = ({foundSavedChart}) => {
     const chartName= useRef()
     const foundSavedChartImages = savedChartImages.filter(savedChartImage=>savedChartImage.savedChartId === foundSavedChart.id) || {}
     const finalChartImages = foundSavedChartImages.map(fSCI => { return images.find(img=> img.id ===fSCI.imageId)}) || {}
-
-    const editSavedChart = () => {
+    
+    
+        const editSavedChart = () => {
 
         if (chartName.current.value === "") {
             window.alert("Please name your chart")
@@ -48,12 +49,13 @@ export const EditFHChartList = ({foundSavedChart}) => {
                 // Find if there are any saved images for this emotion
                const filteredSavedChartImages= savedChartImages.filter(savedChImg=>savedChImg.savedChartId ===foundSavedChart.id ) || {}
                const savedChartImage= filteredSavedChartImages.find(filteredSavedChartImageObj=>filteredSavedChartImageObj.emotionId ===emo.id) || {}
-               const foundImage = images.find(image=>image.id===savedChartImage.imageId) || {}
+               const finalFoundImage = images.find(image=>image.id===savedChartImage.imageId) || {}
 
             return <div className= {`${emo.emotion} emotion`} onClick={()=>{
                 setSelectedEmotion(emo)
-                toggle()}}>
-            <EditEmotionCard key={emo.id} emotion={emo} foundImage={foundImage} finalChartImages={finalChartImages}/>
+                toggle()}
+                }>
+            <EditEmotionCard key={emo.id} emotion={emo} finalFoundImage={finalFoundImage} finalChartImages={finalChartImages}/>
             </div>})
             }
              <fieldset>
@@ -63,24 +65,23 @@ export const EditFHChartList = ({foundSavedChart}) => {
                         type="text"
                         id="chartName"
                         ref={chartName}
+                        defaultValue={foundSavedChart.name}
                         required
                         autoFocus
                         className="form-control"
-                        placeholder="Quarantine Feels"
                     />
                 </div>
             </fieldset>
              </div>
-            {/* <Button onClick={()=>{
-                                editSavedChart()
-                                props.setActiveList("homepage_view")}} >Update Chart</Button> */}
+            <Button onClick={()=>{
+                                editSavedChart()}}>Update Chart</Button>
             </article>
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
                 Choose Your Emotion
                 </ModalHeader>
                 <ModalBody>
-                    <ChooseEmotionModal toggler={toggle} emotion= {selectedEmotion}/>
+                    <EditChooseEmotionModal toggler={toggle} emotion= {selectedEmotion} foundSavedChart= {foundSavedChart} foundSavedChartImages={foundSavedChartImages} />
                 </ModalBody>
             </Modal>
 

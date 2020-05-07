@@ -20,25 +20,25 @@ export const EmotionCard = ({ emotion, foundImage }) => {
   }
 
 
-export const EditEmotionCard = ({ emotion, foundImage, finalChartImages }) => {
-          if (foundImage.hasOwnProperty("emotionId")) {
+export const EditEmotionCard = ({ emotion, finalFoundImage }) => {
+          if (finalFoundImage.hasOwnProperty("emotionId")) {
             return (
               <section className="emotion">
-                <div><img class="emotion__imageView" src={`${foundImage.url}`}/></div>
+                <div><img class="emotion__imageView" src={`${finalFoundImage.url}`}/></div>
                 <div>{emotion.emotion}</div>
               </section>
             )
-        } else if (finalChartImages.hasOwnProperty("emotionId")) {
-          return (
-            <section className="emotion">
-              {
-                  finalChartImages.map(finalChartImageObject => {
-                      return <div><img className="emotion__imageView" src={`${finalChartImageObject.url}`} /> </div>
-                  }) ||{}
-              } 
-              <div>{emotion.emotion}</div>
-            </section>
-          )
+        // } else if (finalChartImages.hasOwnProperty("emotionId")) {
+        //   return (
+        //     <section className="emotion">
+        //       {
+        //           finalChartImages.map(finalChartImageObject => {
+        //               return <div><img className="emotion__imageView" src={`${finalChartImageObject.url}`} /> </div>
+        //           }) ||{}
+        //       } 
+        //       <div>{emotion.emotion}</div>
+        //     </section>
+        //   )
         } else {
           return (
             <section className="emotion">
