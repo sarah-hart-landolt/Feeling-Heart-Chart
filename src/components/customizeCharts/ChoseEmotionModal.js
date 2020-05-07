@@ -8,12 +8,57 @@ import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 // for edit, i need to grab the id of the SavedChartImage and change the imageId
 // for immediate edit i could grab most recent SavedChartImage object posted
 
-export const ChooseEmotionModal = ({ emotion, toggler }) => {
+// export const ChooseEmotionModal = ({ emotion, toggle }) => {
 
-    const { addSavedChartImage } = useContext(SavedChartImageContext)
+//     const { addSavedChartImage } = useContext(SavedChartImageContext)
+//     const { images } = useContext(ImageContext)
+//     const imageArray = images.filter(img => img.emotionId === emotion.id) || {}
+//     const {newSavedChart} = useContext(SavedChartContext)
+
+//     const savePaintingRelationship = (imageObject) => {
+//         const newSavedChartImage = {
+//             imageId: imageObject.id,
+//             emotionId: imageObject.emotionId,
+//             savedChartId: newSavedChart.id
+
+//         }       
+
+//         // Need the id of the emotion the user selected
+
+//         // Need the id of the painting the user selected
+
+//         // Do a POST operation to the API to save the relationship
+//         addSavedChartImage(newSavedChartImage)
+
+//     }
+//       return (
+//             <>
+//                 <h3>Chose a painting for your "{emotion.emotion}"</h3>
+//                 <section className="emotion__image">
+//                     {
+//                         imageArray.map(imageObject => {
+//                             return <div><img className="emotionImage" src={`${imageObject.url}`} />
+//                             <br></br>
+//                             <Button onClick={()=>{
+//                                 savePaintingRelationship(imageObject)
+//                                 toggle()}}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
+//                         })
+//                     }
+
+//                 </section>
+//             </>
+//         )
+//     }
+
+export const ChooseEmotionModal = ({ emotion, toggle, fdSavedChartImages }) => {
+
+    const { addSavedChartImage, updateSavedChartImage } = useContext(SavedChartImageContext)
     const { images } = useContext(ImageContext)
     const imageArray = images.filter(img => img.emotionId === emotion.id) || {}
-    const {newSavedChart} = useContext(SavedChartContext)
+    const { newSavedChart } = useContext(SavedChartContext)
+    const editRecentChartImage = fdSavedChartImages.find(filteredSavedChartImageObject => filteredSavedChartImageObject.emotionId === emotion.id) || {}
+
+
 
     const savePaintingRelationship = (imageObject) => {
         const newSavedChartImage = {
@@ -21,8 +66,8 @@ export const ChooseEmotionModal = ({ emotion, toggler }) => {
             emotionId: imageObject.emotionId,
             savedChartId: newSavedChart.id
 
-        }       
-        
+        }
+
         // Need the id of the emotion the user selected
 
         // Need the id of the painting the user selected
@@ -31,69 +76,28 @@ export const ChooseEmotionModal = ({ emotion, toggler }) => {
         addSavedChartImage(newSavedChartImage)
 
     }
-      return (
-            <>
-                <h3>Chose a painting for your "{emotion.emotion}"</h3>
-                <section className="emotion__image">
-                    {
-                        imageArray.map(imageObject => {
-                            return <div><img className="emotionImage" src={`${imageObject.url}`} />
-                            <br></br>
-                            <Button onClick={()=>{
-                                savePaintingRelationship(imageObject)
-                                toggler()}}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
-                        })
-                    }
-    
-                </section>
-            </>
-        )
-    }
 
-export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages, foundSavedChart }) => {
-
-    const { addSavedChartImage, updateSavedChartImage } = useContext(SavedChartImageContext)
-    const { images } = useContext(ImageContext)
-    const imageArray = images.filter(img => img.emotionId === emotion.id) || {}
-    const editSavedChartImage= foundSavedChartImages.find(foundSavedChartImageObject=>foundSavedChartImageObject.emotionId===emotion.id)|| {}
-
-    const savePaintingRelationship = (imageObject) => {
-        const newSavedChartImage = {
-            imageId: imageObject.id,
-            emotionId: imageObject.emotionId,
-            savedChartId: foundSavedChart.id
-
-        }       
-        
-        // Need the id of the emotion the user selected
-
-        // Need the id of the painting the user selected
-
-        // Do a POST operation to the API to save the relationship
-        addSavedChartImage(newSavedChartImage)
-
-    }
     const updatePaintingRelationship = (updatedImageObject) => {
         // const foundEmotion = emotions.find(emo=> emo.id === imageObject.emotionId)
         const saveUpdatedChartImage = {
-            id: editSavedChartImage.id,
+            id: editRecentChartImage.id,
             imageId: updatedImageObject.id,
             emotionId: updatedImageObject.emotionId,
-            savedChartId: editSavedChartImage.savedChartId
+            savedChartId: newSavedChart.id
 
-        }       
-        
+        }
+
         // Need the id of the emotion the user selected
 
         // Need the id of the painting the user selected
 
         // Do a POST operation to the API to save the relationship
         updateSavedChartImage(saveUpdatedChartImage)
-        
+
 
     }
 
-    if (editSavedChartImage.hasOwnProperty("savedChartId")) {
+    if (editRecentChartImage.hasOwnProperty("imageId")) {
         return (
             <>
                 <h3>Chose a painting for your "{emotion.emotion}"</h3>
@@ -101,52 +105,72 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
                     {
                         imageArray.map(updatedImageObject => {
                             return <div><img className="emotionImage" src={`${updatedImageObject.url}`} />
-                            <br></br>
-                            <Button onClick={()=>{
-                                updatePaintingRelationship(updatedImageObject) 
-                                toggler()}}> {`${emotion.emotion} ${updatedImageObject.id}`}</Button></div>
+                                <br></br>
+                                <Button onClick={() => {
+                                    updatePaintingRelationship(updatedImageObject)
+                                    toggle()
+                                }}> {`${emotion.emotion} ${updatedImageObject.id}`}</Button></div>
                         })
                     }
-    
+
                 </section>
             </>
         )
     } else {
-      return (
+        return (
             <>
                 <h3>Chose a painting for your "{emotion.emotion}"</h3>
                 <section className="emotion__image">
                     {
                         imageArray.map(imageObject => {
                             return <div><img className="emotionImage" src={`${imageObject.url}`} />
-                            <br></br>
-                            <Button onClick={()=>{
-                                savePaintingRelationship(imageObject)
-                                toggler()}}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
+                                <br></br>
+                                <Button onClick={() => {
+                                    savePaintingRelationship(imageObject)
+                                    toggle()
+                                }}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
                         })
                     }
-    
+
                 </section>
             </>
         )
     }
 }
 
-// export const EditChooseEmotionModal = ({ emotion, toggler, editSavedChartImage }) => {
+// export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages, foundSavedChart }) => {
 
-    // const { updateSavedChartImage } = useContext(SavedChartImageContext)
+//     const { addSavedChartImage, updateSavedChartImage } = useContext(SavedChartImageContext)
 //     const { images } = useContext(ImageContext)
 //     const imageArray = images.filter(img => img.emotionId === emotion.id) || {}
+//     const editSavedChartImage= foundSavedChartImages.find(foundSavedChartImageObject=>foundSavedChartImageObject.emotionId===emotion.id)|| {}
 
-//     const updatePaintingRelationship = (updatedImageObject) => {
-//         // const foundEmotion = emotions.find(emo=> emo.id === imageObject.emotionId)
-//         const saveUpdatedChartImage = {
-//             imageId: updatedImageObject.id,
-//             emotionId: updatedImageObject.emotionId,
+//     const savePaintingRelationship = (imageObject) => {
+//         const newSavedChartImage = {
+//             imageId: imageObject.id,
+//             emotionId: imageObject.emotionId,
 //             savedChartId: foundSavedChart.id
 
 //         }       
-        
+
+//         // Need the id of the emotion the user selected
+
+//         // Need the id of the painting the user selected
+
+//         // Do a POST operation to the API to save the relationship
+//         addSavedChartImage(newSavedChartImage)
+
+//     }
+//     const updatePaintingRelationship = (updatedImageObject) => {
+//         // const foundEmotion = emotions.find(emo=> emo.id === imageObject.emotionId)
+//         const saveUpdatedChartImage = {
+//             id: editSavedChartImage.id,
+//             imageId: updatedImageObject.id,
+//             emotionId: updatedImageObject.emotionId,
+//             savedChartId: editSavedChartImage.savedChartId
+
+//         }       
+
 //         // Need the id of the emotion the user selected
 
 //         // Need the id of the painting the user selected
@@ -154,24 +178,45 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
 //         // Do a POST operation to the API to save the relationship
 //         updateSavedChartImage(saveUpdatedChartImage)
 
+
 //     }
 
-//     return (
-//         <>
-//             <h3>Chose a painting for your "{emotion.emotion}"</h3>
-//             <section className="emotion__image">
-//                 {
-//                     imageArray.map(updatedImageObject => {
-//                         return <div><img className="emotionImage" src={`${updatedImageObject.url}`} />
-//                         <br></br>
-//                         <Button onClick={()=>{
-//                             updatePaintingRelationship(updatedImageObject)
-//                             toggler()}}> {`${emotion.emotion} ${updatedImageObject.id}`}</Button></div>
-//                     })
-//                 }
+//     if (editSavedChartImage.hasOwnProperty("savedChartId")) {
+//         return (
+//             <>
+//                 <h3>Chose a painting for your "{emotion.emotion}"</h3>
+//                 <section className="emotion__image">
+//                     {
+//                         imageArray.map(updatedImageObject => {
+//                             return <div><img className="emotionImage" src={`${updatedImageObject.url}`} />
+//                             <br></br>
+//                             <Button onClick={()=>{
+//                                 updatePaintingRelationship(updatedImageObject) 
+//                                 toggler()}}> {`${emotion.emotion} ${updatedImageObject.id}`}</Button></div>
+//                         })
+//                     }
 
-//             </section>
-//         </>
-//     )
+//                 </section>
+//             </>
+//         )
+//     } else {
+//       return (
+//             <>
+//                 <h3>Chose a painting for your "{emotion.emotion}"</h3>
+//                 <section className="emotion__image">
+//                     {
+//                         imageArray.map(imageObject => {
+//                             return <div><img className="emotionImage" src={`${imageObject.url}`} />
+//                             <br></br>
+//                             <Button onClick={()=>{
+//                                 savePaintingRelationship(imageObject)
+//                                 toggler()}}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
+//                         })
+//                     }
+
+//                 </section>
+//             </>
+//         )
+//     }
 // }
 

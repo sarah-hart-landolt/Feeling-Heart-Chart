@@ -7,10 +7,14 @@ export const FeelingHeart = () => {
     const [check, update] = useState(false)
     const toggle = () => update(!check)
 
+    const logout = () => {
+        localStorage.removeItem("feelingHeart_customer")
+        toggle()
+    }
 
     return (
     
-        localStorage.getItem("feelingHeart_customer") ? <UserProvider><Dashboard /></UserProvider> : <Auth toggle={toggle} />
+        localStorage.getItem("feelingHeart_customer") ? <UserProvider><Dashboard logout={logout} /></UserProvider> : <Auth toggle={toggle} />
 
     
     )
