@@ -17,7 +17,7 @@ const releaseSavedChartImage = savedChartImageId => {
         return fetch(`http://localhost:8090/savedChartImages/${savedChartImageId}`, {
             method: "DELETE"
         })
-            .then(getsavedChartImages)
+            .then(getSavedChartImages)
     }
 const getSavedChartImages = () => {
     return fetch("http://localhost:8090/savedChartImages")
@@ -26,7 +26,7 @@ const getSavedChartImages = () => {
     }
 
 const updateSavedChartImage = savedChartImage => {
-        return fetch(`http://localhost:8088/savedChartImages/${savedChartImage.id}`, {
+        return fetch(`http://localhost:8090/savedChartImages/${savedChartImage.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

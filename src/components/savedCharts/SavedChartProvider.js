@@ -11,13 +11,14 @@ export const SavedChartContext = React.createContext()
  */
 export const SavedChartProvider = (props) => {
     const [savedCharts, setSavedCharts] = useState([])
+    const [newSavedChart, setNewSavedChart]= useState({})
     
     
-const releaseSavedChart = savedChartId => {
+const deleteSavedChart = savedChartId => {
         return fetch(`http://localhost:8090/savedCharts/${savedChartId}`, {
             method: "DELETE"
         })
-            .then(getsavedCharts)
+            .then(getSavedCharts)
     }
 const getSavedCharts = () => {
     return fetch("http://localhost:8090/savedCharts")
@@ -26,14 +27,14 @@ const getSavedCharts = () => {
     }
 
 const updateSavedChart = savedChart => {
-        return fetch(`http://localhost:8088/savedCharts/${savedChart.id}`, {
+        return fetch(`http://localhost:8090/savedCharts/${savedChart.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(savedChart)
         })
-            .then(getSavedCharts)
+        .then(getSavedCharts)
     }
 
 const addSavedChart = savedChart => {
@@ -44,7 +45,14 @@ const addSavedChart = savedChart => {
             },
             body: JSON.stringify(savedChart)
         })
-            .then(getSavedCharts)
+            .then(res => res.json())
+                .then((res) => {
+                const createdObj = res
+                getSavedCharts()
+                return createdObj
+        })
+            
+
     }
 
     /*
@@ -62,7 +70,7 @@ const addSavedChart = savedChart => {
     return (
         <SavedChartContext.Provider value={
             {
-                savedCharts, addSavedChart, releaseSavedChart, updateSavedChart
+                savedCharts, addSavedChart, deleteSavedChart, updateSavedChart, newSavedChart, setNewSavedChart
             }
         }>
             {props.children}

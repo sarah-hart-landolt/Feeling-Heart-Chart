@@ -1,14 +1,24 @@
 .emotions {
-    flex-basis: 65%;
-    flex-direction: row;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 5%;
+    /* flex-basis: 65%;
+    flex-direction: row; */
+    display: grid;
+    /* flex-wrap: wrap; */
+    /* padding: 5%; */
+    margin: 4em;
+    grid-template-columns: repeat(4, auto);
 }
 
 .emotion {
-  border: 1px solid black;
-  flex-basis: 20%;
+  /* flex-basis: 20%; */
   padding: 1em;
-  min-width: 200px;
+}
+
+.emotionImage{
+  border: 1px solid black;
+  width: 60%;
+  height: 60%;
+}
+
+.emotion__imageView{
+  width: 170px;
 }

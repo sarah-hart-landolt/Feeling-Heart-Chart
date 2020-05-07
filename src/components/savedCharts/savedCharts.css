@@ -3,6 +3,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: column;
+    width: 500px;
+    padding: 8%
+
 }
 .savedChartCard{
     display: flex;
@@ -14,3 +17,21 @@
     width: 40%;
     height: 40%;
     }
+
+.savedChartPreview {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    width: 40%;
+    height: 40%;
+
+}
+
+.savedChartPreviewImages__image {
+    width: 50px;
+   
+}
+
+.custom-modal-style{
+    width: 897px;
+   height: 1300px;
+}
