@@ -28,17 +28,6 @@ export const EditEmotionCard = ({ emotion, finalFoundImage }) => {
                 <div>{emotion.emotion}</div>
               </section>
             )
-        // } else if (finalChartImages.hasOwnProperty("emotionId")) {
-        //   return (
-        //     <section className="emotion">
-        //       {
-        //           finalChartImages.map(finalChartImageObject => {
-        //               return <div><img className="emotion__imageView" src={`${finalChartImageObject.url}`} /> </div>
-        //           }) ||{}
-        //       } 
-        //       <div>{emotion.emotion}</div>
-        //     </section>
-        //   )
         } else {
           return (
             <section className="emotion">

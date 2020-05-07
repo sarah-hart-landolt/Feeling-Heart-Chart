@@ -53,10 +53,6 @@ export const Dashboard = ({ logout }) => {
                             <h1>How are you feeling today, {activeUser.firstName}?</h1>
                             <small>your feelings are valid.</small>
                             <div className="listContainer">
-                                {/* <div className="links">
-                <div className="fakeLink href" onClick={() => setActiveList("homepage_view")}>HomePage</div>
-                <div className="fakeLink href" onClick={() => setActiveList("FHChartList")}>Make New Chart</div>
-            </div> */}
                                 <div className="listDisplay">
 
                                     {components}
