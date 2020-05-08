@@ -7,6 +7,8 @@ import { EmotionContext } from "./EmotionProvider"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { ImageContext } from "../images/ImageProvider"
 import { SavedChartContext } from "../savedCharts/SavedChartProvider"
+import feelingheartText from "../images/feelingheartText.jpg"
+
 
 export const EditFHChartList = ({ foundSavedChart }) => {
     const [modal, setModal] = useState(false)
@@ -43,7 +45,7 @@ export const EditFHChartList = ({ foundSavedChart }) => {
     return (
         <>
             <article className="FHChartList">
-                <h2>Feeling Heart</h2>
+            <div className="imgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
                 <div className="emotions">
                     {
                         emotions.map(emo => {

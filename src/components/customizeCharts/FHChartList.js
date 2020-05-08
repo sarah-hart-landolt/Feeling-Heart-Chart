@@ -7,6 +7,9 @@ import { EmotionContext } from "./EmotionProvider"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { ImageContext } from "../images/ImageProvider"
 import { SavedChartContext } from "../savedCharts/SavedChartProvider"
+import feelingheartText from "../images/feelingheartText.jpg"
+
+
 
 // define all states here. in modal, pass down each state
 export const FHChartList = (props) => {
@@ -25,25 +28,24 @@ export const FHChartList = (props) => {
 
     useEffect(() => {
         //needs to be inside of an effect hook //need a change state variable (that has savedChartImages)
-        setChartImages(savedChartImages.filter(savedChImg => savedChImg.savedChartId === newSavedChart.id) || [])
+        const filteredImages = savedChartImages.filter(savedChImg => savedChImg.savedChartId === newSavedChart.id) || []
+        setChartImages(filteredImages)
+        console.log("Chart images filtered", filteredImages)
 
-    }
-        , [savedChartImages])
-
+    }, [savedChartImages])
 
     const editSavedChart = () => {
 
         if (chartName.current.value === "") {
             window.alert("Please name your chart")
         } else {
-            console.log(newSavedChart)
             updateSavedChart({
                 id: newSavedChart.id,
                 name: chartName.current.value,
                 userId: parseInt(localStorage.getItem("feelingHeart_customer")),
                 timestamp: Date.now(),
                 price: "$70",
-            })
+            }).then(props.setActiveList("homepage_view"))
         }
     }
 
@@ -51,7 +53,8 @@ export const FHChartList = (props) => {
     return (
         <>
             <article className="FHChartList">
-                <h2>Feeling Heart</h2>
+                <br></br>
+               <div className="imgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
                 <div className="emotions">
                     {
                         emotions.map(emo => {
@@ -60,7 +63,7 @@ export const FHChartList = (props) => {
                             const savedChartImage = chartImages.find(filteredSavedChartImageObj => filteredSavedChartImageObj.emotionId === emo.id) || {}
                             const foundImage = images.find(image => image.id === savedChartImage.imageId) || {}
 
-                            return <div className={`${emo.emotion} emotion`} onClick={() => {
+                            return <div key={`emotionCard--${emo.id}`} className={`${emo.emotion} emotion`} onClick={() => {
                                 setSelectedEmotion(emo)
                                 toggle()
                             }}>
@@ -86,7 +89,7 @@ export const FHChartList = (props) => {
                 </div>
                 <Button onClick={() => {
                     editSavedChart()
-                    props.setActiveList("homepage_view")
+                    
                 }} >Save Chart</Button>
             </article>
             <Modal isOpen={modal} toggle={toggle}>

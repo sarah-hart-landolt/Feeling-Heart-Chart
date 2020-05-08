@@ -32,6 +32,11 @@
 }
 
 .custom-modal-style{
-    width: 897px;
-   height: 1300px;
+    width: 1000px;
+   height: 1500px;
+}
+
+.feelingHeart_imgTextPreview{
+    width: 40%;
+    margin-left: 1.5rem;
 }

@@ -7,6 +7,8 @@ import { SavedChartPreview } from "./SavedChartPreview"
 import { format, fromUnixTime } from 'date-fns'
 import { SavedChartContext } from "./SavedChartProvider"
 import { EditFHChartList } from "../customizeCharts/EditFHChartList"
+import feelingheartText from "../images/feelingheartText.jpg"
+
 
 
 
@@ -24,6 +26,7 @@ export const SavedChartCard = ({foundSavedChart}) => {
             <section className="savedChartCard">
                 <h3 className="savedChartCard__name">{foundSavedChart.name}</h3>
                 <div className="savedChartCard__date">{readableDate()}</div>
+                <div className="imgContainer"><img className="feelingHeart_imgTextPreview" src={feelingheartText} /></div> 
                 <div className="savedChartPreview">
                     {
                 foundSavedChartImages.map(fSCI => { 
@@ -35,6 +38,8 @@ export const SavedChartCard = ({foundSavedChart}) => {
                     <Button onClick={() => deleteSavedChart(foundSavedChart.id)}>Delete</Button> 
                     <Button onClick={() => {toggleEdit()}}>Edit</Button>
                 </div>
+                <br></br>
+                <br></br>
                 <Modal isOpen={editModal} toggle={toggleEdit} contentClassName="custom-modal-style">
                 <ModalHeader toggle={toggleEdit}>
                 </ModalHeader>
