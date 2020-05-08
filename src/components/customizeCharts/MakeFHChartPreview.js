@@ -6,7 +6,7 @@ import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 
 
 export const MakeFHChartPreviewList = (props) => {
-    const { addSavedChart, setNewSavedChart, newSavedChart } = useContext(SavedChartContext)
+    const { addSavedChart, setNewSavedChart } = useContext(SavedChartContext)
  
 
     const saveChart = () => {
@@ -18,9 +18,8 @@ export const MakeFHChartPreviewList = (props) => {
             name: ""
         }       
         
-        console.log(newSavedChartObj)
         // and save it to the API.
-        addSavedChart(newSavedChartObj).then((res) => { 
+        return addSavedChart(newSavedChartObj).then((res) => { 
             console.log(res)
             setNewSavedChart(res)
 
@@ -33,8 +32,12 @@ export const MakeFHChartPreviewList = (props) => {
             <article className="MakeFHChartPreview">
                 <h2>Make your own Feeling Chart !</h2>
                 <img className="feelingHeart_img" src={feelingheart} />
-                <Button onClick={()=>{saveChart() 
-                                    props.setActiveList("FHChartList")}}>Make New Chart</Button>
+                <Button onClick={()=>{
+                    saveChart().then(() => {
+                        props.setActiveList("FHChartList")
+                    })
+                    
+                }}>Make New Chart</Button>
             </article>
         </>
     )
