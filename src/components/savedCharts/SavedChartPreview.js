@@ -12,10 +12,10 @@ const correctEmotion = emotions.find (emo=> emo.id ===finalChartImage.emotionId)
     return (
      <>
         
-        <section className="savedChartPreviewImages">
+        <article className="savedChartPreviewImages">
             <div classname= "savedPreviewImages__box"><img className="savedChartPreviewImages__image" src={`${finalChartImage.url}`}/></div>
-            <div className="savedChartPreview__emotionName">{correctEmotion.emotion}</div>              
-        </section>
+            <div className="savedChartPreview__emotionName">{correctEmotion.emotion}</div>          
+        </article>
      </>
     )
 }

@@ -3,7 +3,6 @@ import { Button } from "reactstrap"
 import "./FHChartList.css"
 import { ImageContext } from "../images/ImageProvider"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
-import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 
 export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages, foundSavedChart }) => {
 
@@ -12,6 +11,7 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
     const imageArray = images.filter(img => img.emotionId === emotion.id) || []
     const editSavedChartImage= foundSavedChartImages.find(foundSavedChartImageObject=>foundSavedChartImageObject.emotionId===emotion.id)|| {}
 
+    
     const savePaintingRelationship = (imageObject) => {
         const newSavedChartImage = {
             imageId: imageObject.id,
@@ -58,7 +58,7 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
                             return <div><img className="emotionImage" src={`${updatedImageObject.url}`} />
                             <br></br>
                             <Button onClick={()=>{
-                                updatePaintingRelationship(updatedImageObject) 
+                                updatePaintingRelationship(updatedImageObject)
                                 toggler()}}> {`${emotion.emotion} ${updatedImageObject.id}`}</Button></div>
                         })
                     }

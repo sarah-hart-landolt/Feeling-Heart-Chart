@@ -23,14 +23,14 @@ export const EmotionCard = ({ emotion, foundImage }) => {
 export const EditEmotionCard = ({ emotion, finalFoundImage }) => {
           if (finalFoundImage.hasOwnProperty("emotionId")) {
             return (
-              <section className="emotion">
+              <section className="editEmotion">
                 <div><img class="emotion__imageView" src={`${finalFoundImage.url}`}/></div>
                 <div>{emotion.emotion}</div>
               </section>
             )
         } else {
           return (
-            <section className="emotion">
+            <section className="editEmotion">
               <h3 className="emotion__name">Click to Choose Your {`${emotion.emotion}`}</h3>
               <div>{emotion.emotion}</div>
             </section>

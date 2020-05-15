@@ -1,17 +1,29 @@
 .emotions {
-    /* flex-basis: 65%;
-    flex-direction: row; */
     display: grid;
-    /* flex-wrap: wrap; */
-    /* padding: 5%; */
     margin: 4em;
     grid-template-columns: repeat(4, auto);
+    align-items: center;
+    text-align: center;
+}
+
+.editEmotions {
+  display: grid;
+  margin: 4em;
+  grid-template-columns: repeat(4, auto);
+  align-items: center;
+  text-align: center;
+
 }
 
 .emotion {
   /* flex-basis: 20%; */
   padding: 1em;
 }
+.editEmotion {
+  /* flex-basis: 20%; */
+  padding: 0em;
+}
+
 
 .emotionImage{
   border: 1px solid black;

@@ -1,5 +1,6 @@
-import React, {useContext, useEffect} from "react"
-import { Button } from "reactstrap"
+import React, {useContext} from "react"
+import { Button, Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle } from "reactstrap"
 import feelingheart from "../auth/feelingheart.png"
 import  "./MakeFHChartPreview.css"
 import { SavedChartContext } from "../savedCharts/SavedChartProvider"
@@ -29,16 +30,25 @@ export const MakeFHChartPreviewList = (props) => {
 
     return (
         <>
-            <article className="MakeFHChartPreview">
-                <h2>Make your own Feeling Chart !</h2>
-                <img className="feelingHeart_img" src={feelingheart} />
-                <Button onClick={()=>{
+         <article className="MakeFHChartPreview">
+         <h2>Make your own Feeling Chart !</h2>
+         <br></br>
+         <Card>
+        <CardImg top width="100%" src={feelingheart} alt="Card image cap" />
+        <CardBody>
+          <CardTitle><h2>Make your own Feeling Chart !</h2></CardTitle>
+          <CardSubtitle>Card subtitle</CardSubtitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <Button onClick={()=>{
                     saveChart().then(() => {
                         props.setActiveList("FHChartList")
                     })
                     
                 }}>Make New Chart</Button>
-            </article>
+        </CardBody>
+      </Card>
+      </article>
+
         </>
     )
     }

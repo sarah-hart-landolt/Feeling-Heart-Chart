@@ -54,7 +54,7 @@ export const FHChartList = (props) => {
         <>
             <article className="FHChartList">
                 <br></br>
-               <div className="imgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
+               <div className="ImgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
                 <div className="emotions">
                     {
                         emotions.map(emo => {
@@ -74,7 +74,7 @@ export const FHChartList = (props) => {
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="chartName">Save Chart As </label>
+                            <label htmlFor="chartName"><h2>Name Your Chart!</h2> </label>
                             <input
                                 type="text"
                                 id="chartName"
@@ -85,12 +85,12 @@ export const FHChartList = (props) => {
                                 placeholder="Quarantine Feels"
                             />
                         </div>
-                    </fieldset>
-                </div>
-                <Button onClick={() => {
+                        <Button onClick={() => {
                     editSavedChart()
-                    
                 }} >Save Chart</Button>
+                    </fieldset>
+                    
+                </div>
             </article>
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>

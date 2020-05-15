@@ -21,8 +21,10 @@
 .savedChartPreview {
     display: grid;
     grid-template-columns: repeat(4, auto);
-    width: 40%;
-    height: 40%;
+    width: 30%;
+    height: 30%;
+    text-align: center;
+    font-size: 10px
 
 }
 
@@ -31,7 +33,7 @@
    
 }
 
-.custom-modal-style{
+.modal-content.custom-modal-style{
     width: 1000px;
    height: 1500px;
 }
@@ -40,3 +42,22 @@
     width: 40%;
     margin-left: 1.5rem;
 }
+
+.card {
+    align-items: center;
+    text-align: center;
+}
+
+.cardZoom:hover {
+    -webkit-transform: scale(1.08);
+        -ms-transform: scale(1.08);
+        transform: scale(1.08);
+}
+
+.savedChartPreviewImages {
+    width: 100 px;
+}
+
+
+
+

@@ -3,7 +3,6 @@ import "./Dashboard.css"
 import { Homepage } from "./Homepage"
 import { FHChartList } from "./customizeCharts/FHChartList"
 import { EmotionProvider } from "./customizeCharts/EmotionProvider"
-import { UserContext } from "./auth/UserProvider"
 import { ImageProvider } from "./images/ImageProvider"
 import { SavedChartImageProvider } from "./savedCharts/SavedChartImageProvider"
 import { SavedChartProvider } from "./savedCharts/SavedChartProvider"
@@ -13,9 +12,6 @@ import { NavBar } from "./nav/NavBar"
 export const Dashboard = ({ logout }) => {
     const [activeList, setActiveList] = useState("homepage_view")
     const [components, setComponents] = useState()
-    const { users } = useContext(UserContext)
-    let activeUserID = parseInt(localStorage.getItem("feelingHeart_customer"))
-    const activeUser = users.find(user => user.id === activeUserID) || {}
 
     const showHomepage = () => (
         <Homepage setActiveList={setActiveList} />
@@ -45,13 +41,13 @@ export const Dashboard = ({ logout }) => {
                                 <div className="dashboardContainer">
                                     {showHomepage}
                                     {showFHChartList}
+                                    <div className="navBar">
                                     <NavBar setActiveList={setActiveList} logout={logout} />
-
+                                    </div>
                                 </div>
 
                             </div>
-                            <h1>How are you feeling today, {activeUser.firstName}?</h1>
-                            <small>your feelings are valid.</small>
+
                             <div className="listContainer">
                                 <div className="listDisplay">
 
