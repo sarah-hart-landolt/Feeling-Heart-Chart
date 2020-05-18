@@ -6,24 +6,18 @@
     display: flex;
     padding: 0 10rem;
     flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .h1, h1 {
     font-size: 2.5rem;
-}
-
-.welcome {
-    margin-bottom: 4rem;
-    position: absolute;
-    width: 686px;
-    height: 160px;
-    left: 914px;
-    top: 354px;
-
+    font-family: Roboto;
 }
 
 fieldset {
     min-width: 0;
+    max-width: 400;
     padding: 1rem 0;
     margin: 0;
     border: 0;
@@ -63,10 +57,9 @@ input[type="password"] {
 .form--login {
     font-size: 1.25rem;
     background-position-x: right;
-    /* background-image: url(feelingheart.png); */
     z-index: 1;
     min-height: 25rem;
-    min-width: 45rem;
+    max-width: 45rem;
     background-color: hsla(0,0%,100%,0.40);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
@@ -80,7 +73,7 @@ input[type="password"] {
     background-position-x: right;
     z-index: 1;
     min-height: 25rem;
-    width: 45rem;
+    width: 25rem;
     background-color: hsla(0,0%,100%,0.40);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
@@ -91,10 +84,9 @@ input[type="password"] {
 }
 
 .imgContainer {
-    /* background-position-x: left; */
-    content: url(feelingheartinverted.jpg);
-    width: 50%;
-    height: 50%;
+    content: url(fhpgif.gif);
+    width: 47%;
+    height: 47%;
 }
 
 .mainContainer{
@@ -117,3 +109,12 @@ p {
     font-size: 150%
 
 }
+
+.authCard {
+    width: 100%;
+    font-weight: 300;
+}
+
+/* .name-form-control{
+    width: 70%
+} */

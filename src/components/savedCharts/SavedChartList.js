@@ -12,7 +12,7 @@ export const SavedChartList = (props) => {
 
     return (
      <> <article className="savedChartsList">
-        <h2>My Saved Charts</h2>
+        <h2> <i class="fas fa-save"></i> My Saved Charts</h2>
         <br></br>
             <div>
             {

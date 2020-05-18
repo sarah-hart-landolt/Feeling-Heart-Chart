@@ -31,9 +31,9 @@ export const MakeFHChartPreviewList = (props) => {
     return (
         <>
          <article className="MakeFHChartPreview">
-         <h2>Make your own Feeling Chart !</h2>
+         <h2><i class="fas fa-plus"></i> Create New Chart</h2>
          <br></br>
-         <Card>
+         <Card className="cardZoom">
         <CardImg top width="100%" src={feelingheart} alt="Card image cap" />
         <CardBody>
           <CardTitle><h2>Make your own Feeling Chart !</h2></CardTitle>

@@ -2,8 +2,7 @@ import React, { useContext, useState } from "react"
 import "./savedCharts.css"
 import feelingheart from "../auth/feelingheart.png"
 import {
-    Button, Modal, ModalHeader, ModalBody, Card, CardImg, CardText, CardBody, CardLink,
-    CardTitle, CardSubtitle
+    Button, Modal, ModalHeader, ModalBody, Card, CardBody, CardTitle, CardSubtitle
 } from "reactstrap"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { SavedChartPreview } from "./SavedChartPreview"
@@ -11,6 +10,9 @@ import { format, fromUnixTime } from 'date-fns'
 import { SavedChartContext } from "./SavedChartProvider"
 import { EditFHChartList } from "../customizeCharts/EditFHChartList"
 import feelingheartText from "../images/feelingheartText.jpg"
+import { ShoppingCart } from "../cart/ShoppingCart"
+import { ShoppingCartContext } from "../cart/ShoppingCartProvider"
+import { MDBIcon } from "mdbreact";
 
 
 
@@ -22,6 +24,26 @@ export const SavedChartCard = ({ foundSavedChart }) => {
     const readableDate = () => format(fromUnixTime(Math.floor(foundSavedChart.timestamp / 1000)), "MM/dd/yyyy")
     const [editModal, setEditModal] = useState(false)
     const toggleEdit = () => setEditModal(!editModal)
+    const { addShoppingCart } = useContext(ShoppingCartContext)
+    const [cartModal, setCartModal] = useState(false)
+    const toggleCart = () => setCartModal(!cartModal)
+
+    
+
+    const saveShoppingCart = () => {
+        // create a new saved shopping cart object
+        const newShoppingCartObj = {
+            userId: parseInt(localStorage.getItem("feelingHeart_customer")),
+            timestamp: Date.now(),
+            price: 70,
+            name: foundSavedChart.name,
+            foundSavedChartId: foundSavedChart.id
+        }       
+        
+        // and save it to the API.
+        return addShoppingCart(newShoppingCartObj).then(toggleCart())
+
+    }
 
 
     if (foundSavedChart.hasOwnProperty("name")) {
@@ -43,8 +65,9 @@ export const SavedChartCard = ({ foundSavedChart }) => {
                     </div>
                     <CardBody>
                         <div className="savedChartCard__buttons">
-                            <Button onClick={() => deleteSavedChart(foundSavedChart.id)}>Delete</Button>
+                            <Button onClick={() => { saveShoppingCart({foundSavedChart}) }}><MDBIcon icon="shopping-cart"></MDBIcon></Button>
                             <Button onClick={() => { toggleEdit() }}>Edit</Button>
+                            <Button onClick={() => deleteSavedChart(foundSavedChart.id)}>Delete</Button>
                         </div>
                     </CardBody>
                 </Card>
@@ -54,6 +77,14 @@ export const SavedChartCard = ({ foundSavedChart }) => {
                     </ModalHeader>
                     <ModalBody>
                         <EditFHChartList key={foundSavedChart.id} toggleEdit={toggleEdit} foundSavedChart={foundSavedChart} />
+                    </ModalBody>
+                </Modal>
+
+                <Modal isOpen={cartModal} toggle={toggleCart} contentClassName="custom-modal-style-cart">
+                    <ModalHeader toggle={toggleCart}>
+                    </ModalHeader>
+                    <ModalBody>
+                        <ShoppingCart key={foundSavedChart.id} toggleCart={toggleCart} foundSavedChart={foundSavedChart} />
                     </ModalBody>
                 </Modal>
                 <br></br>

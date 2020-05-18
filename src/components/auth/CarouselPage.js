@@ -28,7 +28,7 @@ export const CarouselPage = () => {
           </MDBView>
           <MDBCarouselCaption>
             <h3 className="h3-responsive">Step #1</h3>
-            <p>Create a New Chart, choose your a painting per emotion.</p>
+            <p>Create a New Chart, choose your favorite painting per emotion.</p>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem itemId="2">
@@ -52,7 +52,7 @@ export const CarouselPage = () => {
               src="https://images.squarespace-cdn.com/content/v1/53d8799de4b0873b56402a1e/1579662656968-55MNXYR9D3WNPYILVXZ3/ke17ZwdGBToddI8pDm48kEqrFDBYgmHfEuR9EsYWcjt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0hGaawTDWlunVGEFKwsEdnGj562O3wwokqdtHg-YD7YJmqM2NsdblZWRQAHWB2JHBw/courage+1.jpeg?format=1500w"
               alt="Third slide"
             />
-          <MDBMask overlay="black-slight" />
+          <MDBMask overlay="black-light" />
           </MDBView>
           <MDBCarouselCaption>
             <h3 className="h3-responsive">Step #3</h3>

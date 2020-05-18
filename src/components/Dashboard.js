@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import "./Dashboard.css"
 import { Homepage } from "./Homepage"
 import { FHChartList } from "./customizeCharts/FHChartList"
@@ -7,6 +7,7 @@ import { ImageProvider } from "./images/ImageProvider"
 import { SavedChartImageProvider } from "./savedCharts/SavedChartImageProvider"
 import { SavedChartProvider } from "./savedCharts/SavedChartProvider"
 import { NavBar } from "./nav/NavBar"
+import { ShoppingCartProvider } from "./cart/ShoppingCartProvider"
 
 
 export const Dashboard = ({ logout }) => {
@@ -33,10 +34,13 @@ export const Dashboard = ({ logout }) => {
 
     return (
         <>
+        
             <EmotionProvider>
                 <ImageProvider>
                     <SavedChartImageProvider>
                         <SavedChartProvider>
+                            <ShoppingCartProvider>
+                            
                             <div className="mainContainer">
                                 <div className="dashboardContainer">
                                     {showHomepage}
@@ -57,10 +61,12 @@ export const Dashboard = ({ logout }) => {
 
                                 </div>
                             </div>
+                            </ShoppingCartProvider>
                         </SavedChartProvider>
                     </SavedChartImageProvider>
                 </ImageProvider>
             </EmotionProvider>
+            
         </>
     )
 

@@ -16,20 +16,22 @@
 }
 
 .emotion {
-  /* flex-basis: 20%; */
   padding: 1em;
 }
 .editEmotion {
-  /* flex-basis: 20%; */
   padding: 0em;
 }
 
 
 .emotionImage{
   border: 1px solid black;
-  width: 60%;
-  height: 60%;
+  width: 95%;
 }
+.emotion__image{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
 
 .emotion__imageView{
   width: 170px;
@@ -37,7 +39,13 @@
 
 .feelingHeart_imgText{
   width: 70%;
-  margin-left: 7rem;
-
+ 
 }
 
+.modal-body {
+  text-align-last: center
+}
+
+.ImgContainer {
+  text-align: center;
+}

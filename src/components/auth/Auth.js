@@ -19,11 +19,12 @@ export const Auth = ({toggle}) => {
             <div className="mainContainer">
                 <div className="imgContainer"></div>
                 <div className="authContainer">
-                    <h1 className="welcome">Feel Your Heart With Art</h1>
-                    <Button className="LoginButton" color="secondary" onClick={togglerLogin} style={{ marginBottom: '1rem' }}>Login</Button>
+                    <h1 className="welcome">LISTEN TO YOUR HE<b>ART</b></h1>
+                    <medium className="welcome">Customize Your Own Feeling Chart</medium>
+                    <MDBBtn className="LoginButton" color="btn aqua-gradient" onClick={togglerLogin} style={{ marginBottom: '1rem' }}>Login</MDBBtn>
                     <Collapse isOpen={isLoginOpen}>
                         <Card>
-                            <CardBody>
+                            <CardBody className="authCard">
                                 <Login toggle={toggle} />
                             </CardBody>
                         </Card>
@@ -32,7 +33,7 @@ export const Auth = ({toggle}) => {
                     <MDBBtn gradient="purple" className="SignUpButton"  onClick={toggler} style={{ marginBottom: '1rem' }}>Sign-up</MDBBtn>
                     <Collapse isOpen={isOpen}>
                         <Card>
-                            <CardBody>
+                            <CardBody className="authCard">
                                 <Register toggle={toggle} />
                             </CardBody>
                         </Card>
