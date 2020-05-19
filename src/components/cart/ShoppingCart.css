@@ -1,6 +1,7 @@
 .cartItem {
     display: flex;
     flex-direction: row;
+    font-weight: 300 !important;
 }
 
 .cartItem__info{
@@ -47,3 +48,15 @@
     text-transform: uppercase;
 }
 
+.fa-shopping-cart:before{
+    font-size: 17px;
+}
+
+h4, h5{
+    font-weight: 300 !important;
+}
+
+.icons{
+    display: flex;
+    flex-direction: column-reverse;
+}

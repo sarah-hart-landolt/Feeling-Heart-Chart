@@ -1,66 +1,69 @@
-import React, { useContext, useState } from "react"
-import { MDBBtn, MDBCard, MDBCardBody, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import React, { useContext,  useState } from "react"
+import {MDBBtn, MDBCard, MDBCardBody, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
 import { ShoppingCartContext } from "./ShoppingCartProvider";
 import { Modal, ModalHeader, ModalBody, Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
-import { ShoppingCart } from "./ShoppingCart"
+import {ShoppingCart} from "./ShoppingCart"
 import "./ShoppingCart.css"
 
 
 
-export const ChoseProductModal = ({ toggleProduct, foundSavedChart }) => {
-    const { addShoppingCart } = useContext(ShoppingCartContext)
+export const EditChoseProductModal = ({ toggleEditCart, foundSavedChart, userShoppingCart }) => {
+    const { addShoppingCart, updateShoppingCart } = useContext(ShoppingCartContext)
     const [cartModal, setCartModal] = useState(false)
     const toggleCart = () => setCartModal(!cartModal)
 
 
-    const saveDigitalShoppingCart = () => {
+    const updateDigitalShoppingCart = () => {
         // create a new saved shopping cart object
         const newShoppingCartObj = {
+            id: userShoppingCart.id,
             userId: parseInt(localStorage.getItem("feelingHeart_customer")),
             timestamp: Date.now(),
             price: 20,
-            name: foundSavedChart.name,
-            foundSavedChartId: foundSavedChart.id,
+            name: userShoppingCart.name,
+            foundSavedChartId: userShoppingCart.foundSavedChartId,
             quantity: 1,
             type: "digital : $20"
         }
 
         // and save it to the API.
-        return addShoppingCart(newShoppingCartObj).then(toggleCart())
+        return updateShoppingCart(newShoppingCartObj).then(toggleEditCart())
 
     }
 
-    const savePrintShoppingCart = () => {
-        // create a new saved shopping cart object
+    const updatePrintShoppingCart = () => {
+        // create a new updated shopping cart object
         const newShoppingCartObj = {
+            id: userShoppingCart.id,
             userId: parseInt(localStorage.getItem("feelingHeart_customer")),
             timestamp: Date.now(),
             price: 65,
-            name: foundSavedChart.name,
-            foundSavedChartId: foundSavedChart.id,
+            name: userShoppingCart.name,
+            foundSavedChartId: userShoppingCart.foundSavedChartId,
             quantity: 1,
             type: "print : $65"
         }
 
-        // and save it to the API.
-        return addShoppingCart(newShoppingCartObj).then(toggleCart())
+        // and update it to the API.
+        return updateShoppingCart(newShoppingCartObj).then(toggleEditCart())
 
     }
 
-    const saveDigitalPrintShoppingCart = () => {
-        // create a new saved shopping cart object
+    const updateDigitalPrintShoppingCart = () => {
+        // create a new updated shopping cart object
         const newShoppingCartObj = {
+            id: userShoppingCart.id,
             userId: parseInt(localStorage.getItem("feelingHeart_customer")),
             timestamp: Date.now(),
             price: 65,
-            name: foundSavedChart.name,
-            foundSavedChartId: foundSavedChart.id,
+            name: userShoppingCart.name,
+            foundSavedChartId: userShoppingCart.foundSavedChartId,
             quantity: 1,
             type: "digital & print : $75"
         }
 
-        // and save it to the API.
-        return addShoppingCart(newShoppingCartObj).then(toggleCart())
+        // and update it to the API.
+        return updateShoppingCart(newShoppingCartObj).then(toggleEditCart())
 
     }
 
@@ -86,7 +89,7 @@ export const ChoseProductModal = ({ toggleProduct, foundSavedChart }) => {
                                 <p>
                                     Digital Download to use for screens. Emailed after purchase.
               </p>
-                                <MDBBtn outline rounded color="white" onClick={() => { saveDigitalShoppingCart() }}>
+                                <MDBBtn outline rounded color="white" onClick={() => { updateDigitalShoppingCart() }}>
                                     Buy now
               </MDBBtn>
                             </MDBCardBody>
@@ -105,7 +108,7 @@ export const ChoseProductModal = ({ toggleProduct, foundSavedChart }) => {
                                 <p>
                                     Unique 11"x 14" matte print from local Nashville, TN Printing Company.
               </p>
-                                <MDBBtn outline rounded color="white" onClick={() => { savePrintShoppingCart() }}>
+                                <MDBBtn outline rounded color="white" onClick={() => { updatePrintShoppingCart() }}>
                                     Buy now
               </MDBBtn>
                             </MDBCardBody>
@@ -125,7 +128,7 @@ export const ChoseProductModal = ({ toggleProduct, foundSavedChart }) => {
                                 <p>
                                     Package deal for digital download and unique 11" x 14" matte print.
               </p>
-                                <MDBBtn outline rounded color="white" onClick={() => { saveDigitalPrintShoppingCart() }}>
+                                <MDBBtn outline rounded color="white" onClick={() => { updateDigitalPrintShoppingCart() }}>
                                     Buy now
               </MDBBtn>
                             </MDBCardBody>
@@ -133,17 +136,16 @@ export const ChoseProductModal = ({ toggleProduct, foundSavedChart }) => {
                     </MDBCol>
                 </MDBRow>
 
-                <Modal isOpen={cartModal} toggle={toggleCart} contentClassName="custom-modal-style-cart">
-                    <ModalHeader className="shoppingCartFont" toggle={toggleCart} toggle={toggleProduct}>
+                {/* <Modal isOpen={cartModal} toggle={toggleCart} contentClassName="custom-modal-style-cart">
+                    <ModalHeader className="shoppingCartFont" toggle={toggleCart} toggle= {toggleProduct}>
                         Shopping Cart
                     </ModalHeader>
                     <ModalBody>
-                        <ShoppingCart key={foundSavedChart.id} toggleCart={toggleCart} foundSavedChart={foundSavedChart} />
+                        <ShoppingCart key={foundSavedChart.id} toggleCart={toggleCart} />
                     </ModalBody>
-                </Modal>
+                </Modal> */}
                 <br></br>
             </section>
         </>
     )
 }
-

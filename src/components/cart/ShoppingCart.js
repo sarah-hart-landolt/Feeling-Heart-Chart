@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { MDBIcon, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCol, MDBRow, MDBContainer } from "mdbreact";
 import { ShoppingCartContext } from "./ShoppingCartProvider";
 import { format, fromUnixTime } from 'date-fns'
@@ -6,15 +6,22 @@ import "./ShoppingCart.css"
 import feelingheartText from "../images/feelingheartText.jpg"
 import { ShoppingCartChartPreview} from "./ShoppingCartChartPreview"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider";
+import { EditChoseProductModal} from "./EditChoseProductModal"
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 
 
 
 
 
-export const ShoppingCart = () => {
+export const ShoppingCart = ({foundSavedChart}) => {
+    const [editCartModal, setEditCartModal] = useState(false)
+    const toggleEditCart = () => setEditCartModal(!editCartModal)
+
     const { shoppingCarts, deleteShoppingCart } = useContext(ShoppingCartContext)
-    const userShoppingCarts = shoppingCarts.filter(shoppingCart => shoppingCart.userId === parseInt(localStorage.getItem("feelingHeart_customer"))) || []
+    const sortedShoppingCarts = shoppingCarts.sort((a, b) => b.timestamp - a.timestamp)
+    const userShoppingCarts = sortedShoppingCarts.filter(shoppingCart => shoppingCart.userId === parseInt(localStorage.getItem("feelingHeart_customer"))) || []
+
     const subtotal = userShoppingCarts.reduce(function (sum, item) {
         return sum = sum + item.price;
     }, 0)
@@ -33,7 +40,7 @@ export const ShoppingCart = () => {
                         <MDBCard>
                             <MDBCardBody>
                                 
-                                <MDBCardTitle><h5 class="mb-4">Cart {quantity} item(s)</h5></MDBCardTitle>
+                                <MDBCardTitle><h5 class="mb-4"><MDBIcon icon="shopping-cart"></MDBIcon> Cart : {quantity} item(s)</h5></MDBCardTitle>
                                 <MDBCardText>
                                     <div>
                                     {
@@ -49,6 +56,7 @@ export const ShoppingCart = () => {
                                                 </div>
                                                 <div className="savedChartPreview__container"><div className="ImgContainer"><img className="feelingHeart_imgTextPreviewSC" src={feelingheartText} /></div>
                                                 <div className="savedChartPreview__shoppingCart">
+                                               
 
                                              {
                                                 foundSavedChartImages.map(fSCI => {
@@ -58,9 +66,20 @@ export const ShoppingCart = () => {
                                                 })
                                             }</div>
                                             </div>
-                                                <h4><MDBIcon className="trashCan" icon="trash-alt" onClick={() => deleteShoppingCart(userShoppingCart.id)} /></h4> <br></br></div>
+                                            <div className="icons"><h4><MDBIcon className="trashCan" icon="trash-alt" onClick={() => deleteShoppingCart(userShoppingCart.id)} /></h4> <br></br>
+                                                <h4><MDBIcon icon="edit" onClick={() => { toggleEditCart() }}/> </h4></div>
+                                                
+                                                <Modal isOpen={editCartModal} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
+                    toggle={toggleEditCart} contentClassName="custom-modal-style-product" >
+                    <ModalHeader toggle={toggleEditCart}>Choose Product</ModalHeader>
+                    <ModalBody>
+                        <EditChoseProductModal toggleEditCart={toggleEditCart} foundSavedChart={foundSavedChart} userShoppingCart= {userShoppingCart}/>  
+                    </ModalBody>
+                </Modal>
+                                            </div>
 
                                         })
+                                       
                                     }
                                     </div>
 
@@ -108,6 +127,8 @@ export const ShoppingCart = () => {
                         </MDBCard>
                   
             </MDBContainer>
+
+            
         </>
     )
 }
