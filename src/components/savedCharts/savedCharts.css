@@ -4,7 +4,7 @@
     justify-content: space-between;
     flex-direction: column;
     width: 500px;
-    padding: 8%;
+    padding: 6%;
     align-items: center;
 
 }
@@ -13,6 +13,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: column;
+    margin-bottom: 30px;
+    width: 400px;
 }
 .savedChartCard__savedChartPreview {
     width: 40%;
@@ -22,7 +24,8 @@
 .savedChartPreview {
     display: grid;
     grid-template-columns: repeat(4, auto);
-    font-size: 10px
+    font-size: 10px;
+    padding: 0
 
 }
 
@@ -32,24 +35,39 @@
 }
 
 .modal-content.custom-modal-style{
-    width: 1000px;
-   height: 1500px;
+ width: 1000px;
+   height: 800px;
+   overflow: scroll;
+   position: fixed;
+    top: 2%;
+   left: 5%;
+   bottom: 5%
 }
 
 .modal-content.custom-modal-style-cart{
+    
     width: 800px;
-    height: 500px;
+    height: 700px;
     text-align: center;
+    overflow: scroll;
+    background-color: whitesmoke;
+}
+
+.modal-content.custom-modal-style-product{
+    width: 800px;
+    height: 700px;
+    text-align: center;
+    overflow: scroll;
 }
 
 .feelingHeart_imgTextPreview{
     width: 40%;
-    margin-left: 1.5rem;
 }
 
 .card {
     align-items: center;
     text-align: center;
+    font-weight: 300 !important;
 }
 
 .cardZoom:hover {
@@ -63,11 +81,11 @@
 }
 
 .card-body{
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 
 h3 {
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 
 .btn.btn-secondary{
@@ -77,4 +95,17 @@ h3 {
 
 .fa-shopping-cart:before {
     font-size: 12px;
+}
+
+/* .btn.Ripple-parent.aqua-gradient {
+    padding: .7rem
+}
+.btn.Ripple-parent.blue-gradient {
+    padding: .7rem
+}
+.btn.Ripple-parent.purple-gradient {
+    padding: .7rem
+} */
+.h3 {
+    font-weight: 300;
 }

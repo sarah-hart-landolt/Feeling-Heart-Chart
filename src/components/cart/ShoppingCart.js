@@ -12,11 +12,14 @@ import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider";
 
 
 
-export const ShoppingCart = ({foundSavedChart}) => {
+export const ShoppingCart = () => {
     const { shoppingCarts, deleteShoppingCart } = useContext(ShoppingCartContext)
     const userShoppingCarts = shoppingCarts.filter(shoppingCart => shoppingCart.userId === parseInt(localStorage.getItem("feelingHeart_customer"))) || []
     const subtotal = userShoppingCarts.reduce(function (sum, item) {
         return sum = sum + item.price;
+    }, 0)
+    const quantity = userShoppingCarts.reduce(function (sum, item) {
+        return sum = sum + item.quantity;
     }, 0)
     const withTax = ((subtotal * .0925) + subtotal).toFixed(2);
     const { savedChartImages } = useContext(SavedChartImageContext)
@@ -24,14 +27,13 @@ export const ShoppingCart = ({foundSavedChart}) => {
 
     return (
         <>
-            <h3 class="shoppingCartFont">Shopping cart</h3>
             <MDBContainer>
                 <MDBRow className="mb-4">
                     <MDBCol sm="8">
                         <MDBCard>
                             <MDBCardBody>
                                 
-                                <MDBCardTitle><h5 class="mb-4">Cart (<span>2</span> items)</h5></MDBCardTitle>
+                                <MDBCardTitle><h5 class="mb-4">Cart {quantity} item(s)</h5></MDBCardTitle>
                                 <MDBCardText>
                                     <div>
                                     {
@@ -43,6 +45,7 @@ export const ShoppingCart = ({foundSavedChart}) => {
                                                 <div className="cartItem__info">
                                                     <div><h4>{userShoppingCart.name} Chart</h4></div>
                                                     <div>Date added: {readableDate}</div>
+                                                    <div>Plan: {userShoppingCart.type}</div>
                                                 </div>
                                                 <div className="savedChartPreview__container"><div className="ImgContainer"><img className="feelingHeart_imgTextPreviewSC" src={feelingheartText} /></div>
                                                 <div className="savedChartPreview__shoppingCart">
@@ -97,9 +100,9 @@ export const ShoppingCart = ({foundSavedChart}) => {
                 
                         <MDBCard>
                             <MDBCardBody>
-                                <MDBCardTitle><h5 class="mb-4">Expected shipping delivery</h5></MDBCardTitle>
+                                <MDBCardTitle><h5 class="mb-4">Expected shipping/ digital delivery</h5></MDBCardTitle>
                                 <MDBCardText>
-                                    All prints are made to order. Please allow 2 weeks for printing and shipping.
+                                    All digital downloads and prints are made to order. Please allow 2 weeks for creation, printing, and shipping.
             </MDBCardText>
                             </MDBCardBody>
                         </MDBCard>

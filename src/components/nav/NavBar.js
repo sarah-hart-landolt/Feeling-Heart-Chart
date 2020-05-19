@@ -28,6 +28,9 @@ export const NavBar = ({ setActiveList, logout }) => {
               <NavLink onClick={() => { setActiveList("FHChartList")}}>Make New Chart</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink onClick={() => { setActiveList("aboutArtist")}}>About</NavLink>
+            </NavItem>
+            <NavItem>
                     <NavLink onClick={logout}>Logout</NavLink>
                 </NavItem>
           </Nav>

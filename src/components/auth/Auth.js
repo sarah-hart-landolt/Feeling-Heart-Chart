@@ -3,9 +3,10 @@ import { Collapse, CardBody, Button, Card } from 'reactstrap';
 import Login from "./Login"
 import Register from "./Register"
 import "./Login.css"
-import { MDBBtn } from "mdbreact";
+import { MDBBtn} from "mdbreact";
+import logo from "./logo.png"
 
-export const Auth = ({toggle}) => {
+export const Auth = ({ toggle }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggler = () => setIsOpen(!isOpen);
 
@@ -21,6 +22,14 @@ export const Auth = ({toggle}) => {
                 <div className="authContainer">
                     <h1 className="welcome">LISTEN TO YOUR HE<b>ART</b></h1>
                     <medium className="welcome">Customize Your Own Feeling Chart</medium>
+                    <div className="view zoom">
+                        <img
+                            className="sarahHartArtLogo"
+                            alt=""
+                            src={logo}
+                        />
+                    </div>
+                    <small>A project by Sarah Hart Art</small>
                     <MDBBtn className="LoginButton" color="btn aqua-gradient" onClick={togglerLogin} style={{ marginBottom: '1rem' }}>Login</MDBBtn>
                     <Collapse isOpen={isLoginOpen}>
                         <Card>
@@ -30,7 +39,7 @@ export const Auth = ({toggle}) => {
                         </Card>
                     </Collapse>
 
-                    <MDBBtn gradient="purple" className="SignUpButton"  onClick={toggler} style={{ marginBottom: '1rem' }}>Sign-up</MDBBtn>
+                    <MDBBtn gradient="purple" className="SignUpButton" onClick={toggler} style={{ marginBottom: '1rem' }}>Sign-up</MDBBtn>
                     <Collapse isOpen={isOpen}>
                         <Card>
                             <CardBody className="authCard">
@@ -38,7 +47,9 @@ export const Auth = ({toggle}) => {
                             </CardBody>
                         </Card>
                     </Collapse>
+
                 </div>
+
             </div>
         </>
     )

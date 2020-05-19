@@ -18,8 +18,9 @@ export const Homepage = (props) => {
                     <small>your feelings are valid.</small></div>
                 <div className="homepage_slides" ><CarouselPage /></div>
                 <div className="homepage_charts">
-                    <div><SavedChartList setActiveList={props.setActiveList} /></div>
                     <div><MakeFHChartPreviewList setActiveList={props.setActiveList} /></div>
+                    <div><SavedChartList setActiveList={props.setActiveList} /></div>
+                    
                 </div>
         </article>
     </>

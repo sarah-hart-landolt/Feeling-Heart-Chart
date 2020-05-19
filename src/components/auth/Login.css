@@ -8,6 +8,7 @@
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .h1, h1 {
@@ -115,6 +116,7 @@ p {
     font-weight: 300;
 }
 
-/* .name-form-control{
-    width: 70%
-} */
+.sarahHartArtLogo{
+    width: 20%;
+    margin:auto;
+}

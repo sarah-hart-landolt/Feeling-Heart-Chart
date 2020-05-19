@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import "./savedCharts.css"
 import feelingheart from "../auth/feelingheart.png"
 import {
-    Button, Modal, ModalHeader, ModalBody, Card, CardBody, CardTitle, CardSubtitle
+ Modal, ModalHeader, ModalBody, Card, CardBody, CardTitle, CardSubtitle
 } from "reactstrap"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { SavedChartPreview } from "./SavedChartPreview"
@@ -10,9 +10,8 @@ import { format, fromUnixTime } from 'date-fns'
 import { SavedChartContext } from "./SavedChartProvider"
 import { EditFHChartList } from "../customizeCharts/EditFHChartList"
 import feelingheartText from "../images/feelingheartText.jpg"
-import { ShoppingCart } from "../cart/ShoppingCart"
-import { ShoppingCartContext } from "../cart/ShoppingCartProvider"
-import { MDBIcon } from "mdbreact";
+import { MDBIcon, MDBBtn } from "mdbreact";
+import { ChoseProductModal } from "../cart/ChoseProductModal"
 
 
 
@@ -24,26 +23,9 @@ export const SavedChartCard = ({ foundSavedChart }) => {
     const readableDate = () => format(fromUnixTime(Math.floor(foundSavedChart.timestamp / 1000)), "MM/dd/yyyy")
     const [editModal, setEditModal] = useState(false)
     const toggleEdit = () => setEditModal(!editModal)
-    const { addShoppingCart } = useContext(ShoppingCartContext)
-    const [cartModal, setCartModal] = useState(false)
-    const toggleCart = () => setCartModal(!cartModal)
+    const [productModal, setProductModal] = useState(false)
+    const toggleProduct = () => setProductModal(!productModal)
 
-    
-
-    const saveShoppingCart = () => {
-        // create a new saved shopping cart object
-        const newShoppingCartObj = {
-            userId: parseInt(localStorage.getItem("feelingHeart_customer")),
-            timestamp: Date.now(),
-            price: 70,
-            name: foundSavedChart.name,
-            foundSavedChartId: foundSavedChart.id
-        }       
-        
-        // and save it to the API.
-        return addShoppingCart(newShoppingCartObj).then(toggleCart())
-
-    }
 
 
     if (foundSavedChart.hasOwnProperty("name")) {
@@ -65,9 +47,9 @@ export const SavedChartCard = ({ foundSavedChart }) => {
                     </div>
                     <CardBody>
                         <div className="savedChartCard__buttons">
-                            <Button onClick={() => { saveShoppingCart({foundSavedChart}) }}><MDBIcon icon="shopping-cart"></MDBIcon></Button>
-                            <Button onClick={() => { toggleEdit() }}>Edit</Button>
-                            <Button onClick={() => deleteSavedChart(foundSavedChart.id)}>Delete</Button>
+                            <MDBBtn gradient="purple" onClick={() => { toggleProduct() }}><MDBIcon icon="shopping-cart"></MDBIcon></MDBBtn>
+                            <MDBBtn gradient="blue" onClick={() => { toggleEdit() }}><MDBIcon icon="edit" /></MDBBtn>
+                            <MDBBtn gradient="aqua" onClick={() => deleteSavedChart(foundSavedChart.id)}><MDBIcon far icon="trash-alt" /></MDBBtn>
                         </div>
                     </CardBody>
                 </Card>
@@ -80,14 +62,15 @@ export const SavedChartCard = ({ foundSavedChart }) => {
                     </ModalBody>
                 </Modal>
 
-                <Modal isOpen={cartModal} toggle={toggleCart} contentClassName="custom-modal-style-cart">
-                    <ModalHeader toggle={toggleCart}>
-                    </ModalHeader>
+                
+                <Modal isOpen={productModal} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
+                    toggle={toggleProduct} contentClassName="custom-modal-style-product" >
+                    <ModalHeader toggle={toggleProduct}>Choose Product</ModalHeader>
                     <ModalBody>
-                        <ShoppingCart key={foundSavedChart.id} toggleCart={toggleCart} foundSavedChart={foundSavedChart} />
+                        <ChoseProductModal key={foundSavedChart.id} toggleProduct={toggleProduct} foundSavedChart={foundSavedChart}/>  
                     </ModalBody>
                 </Modal>
-                <br></br>
+
             </section>
         )
     } else {

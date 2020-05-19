@@ -69,7 +69,7 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
     } else {
       return (
             <>
-                <h3>Chose a painting for your "{emotion.emotion}"</h3>
+                <h3>Which one for "{emotion.emotion}"?</h3>
                 <section className="emotion__image">
                     {
                         imageArray.map(imageObject => {

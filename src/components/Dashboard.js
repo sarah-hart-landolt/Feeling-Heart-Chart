@@ -8,6 +8,7 @@ import { SavedChartImageProvider } from "./savedCharts/SavedChartImageProvider"
 import { SavedChartProvider } from "./savedCharts/SavedChartProvider"
 import { NavBar } from "./nav/NavBar"
 import { ShoppingCartProvider } from "./cart/ShoppingCartProvider"
+import { AboutArtist} from "./about/AboutArtist"
 
 
 export const Dashboard = ({ logout }) => {
@@ -22,12 +23,20 @@ export const Dashboard = ({ logout }) => {
         <FHChartList setActiveList={setActiveList} />
     )
 
+    const showAboutArtist = () => (
+        <AboutArtist setActiveList={setActiveList}/>
+    )
+
+
     useEffect(() => {
         if (activeList === "homepage_view") {
             setComponents(showHomepage)
         }
         else if (activeList === "FHChartList") {
             setComponents(showFHChartList)
+        }
+        else if (activeList === "aboutArtist") {
+            setComponents(showAboutArtist)
         }
 
     }, [activeList])
@@ -45,6 +54,7 @@ export const Dashboard = ({ logout }) => {
                                 <div className="dashboardContainer">
                                     {showHomepage}
                                     {showFHChartList}
+                                    {showAboutArtist}
                                     <div className="navBar">
                                     <NavBar setActiveList={setActiveList} logout={logout} />
                                     </div>

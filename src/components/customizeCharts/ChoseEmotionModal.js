@@ -56,7 +56,7 @@ export const ChooseEmotionModal = ({ emotion, toggle, fdSavedChartImages }) => {
     if (editRecentChartImage.hasOwnProperty("imageId")) {
         return (
             <>
-                <h3>Chose a painting for your "{emotion.emotion}"</h3>
+                <h3>Chose for your "{emotion.emotion}"</h3>
                 <section className="emotion__image">
                     {
                         imageArray.map(updatedImageObject => {
@@ -75,7 +75,7 @@ export const ChooseEmotionModal = ({ emotion, toggle, fdSavedChartImages }) => {
     } else {
         return (
             <>
-                <h3>Chose a painting for your "{emotion.emotion}"</h3>
+                <h3>Which one for "{emotion.emotion}"?</h3>
                 <section className="emotion__image">
                     {
                         imageArray.map(imageObject => {

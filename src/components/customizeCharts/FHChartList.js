@@ -8,6 +8,8 @@ import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { ImageContext } from "../images/ImageProvider"
 import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 import feelingheartText from "../images/feelingheartText.jpg"
+import { MDBIcon, MDBBtn } from "mdbreact";
+
 
 
 
@@ -63,12 +65,12 @@ export const FHChartList = (props) => {
                             const savedChartImage = chartImages.find(filteredSavedChartImageObj => filteredSavedChartImageObj.emotionId === emo.id) || {}
                             const foundImage = images.find(image => image.id === savedChartImage.imageId) || {}
 
-                            return <div key={`emotionCard--${emo.id}`} className={`${emo.emotion} emotion`} onClick={() => {
+                            return <MDBBtn outline color="secondary" key={`emotionCard--${emo.id}`} className={`${emo.emotion} emotion`} onClick={() => {
                                 setSelectedEmotion(emo)
                                 toggle()
                             }}>
                                 <EmotionCard key={`emotion_${emo.id}`} emotion={emo} foundImage={foundImage} />
-                            </div>
+                            </MDBBtn>
                         })
                     }
 
