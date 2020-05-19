@@ -3,10 +3,10 @@ import "./savedCharts.css"
 import { SavedChartCard } from "./SavedChartCard"
 import { SavedChartContext } from "./SavedChartProvider"
 
-export const SavedChartList = (props) => {
+export const SavedChartList = () => {
     const { savedCharts }= useContext(SavedChartContext)
-    
-    const filteredSavedCharts= savedCharts.filter(savedChart => savedChart.name != "" ) || {}
+    const sortedCharts = savedCharts.sort((a, b) => b.timestamp - a.timestamp)
+    const filteredSavedCharts= sortedCharts.filter(savedChart => savedChart.name != "" ) || {}
     const foundSavedCharts = filteredSavedCharts.filter(filteredSavedChart=>filteredSavedChart.userId === parseInt(localStorage.getItem("feelingHeart_customer")) ) || {}
 
 
