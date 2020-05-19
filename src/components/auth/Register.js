@@ -1,5 +1,7 @@
 import React, { useRef } from "react"
 import "./Login.css"
+import { MDBBtn } from "mdbreact";
+
 
 const Register = props => {
     const firstName = useRef()
@@ -95,9 +97,9 @@ const Register = props => {
                         required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit">
+                    <MDBBtn gradient="purple" type="submit">
                         Sign in
-                    </button>
+                    </MDBBtn>
                 </fieldset>
             </form>
         </main>

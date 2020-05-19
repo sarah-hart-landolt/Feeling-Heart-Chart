@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import "./Dashboard.css"
 import { Homepage } from "./Homepage"
 import { FHChartList } from "./customizeCharts/FHChartList"
 import { EmotionProvider } from "./customizeCharts/EmotionProvider"
-import { UserContext } from "./auth/UserProvider"
 import { ImageProvider } from "./images/ImageProvider"
 import { SavedChartImageProvider } from "./savedCharts/SavedChartImageProvider"
 import { SavedChartProvider } from "./savedCharts/SavedChartProvider"
 import { NavBar } from "./nav/NavBar"
+import { ShoppingCartProvider } from "./cart/ShoppingCartProvider"
+import { AboutArtist} from "./about/AboutArtist"
 
 
 export const Dashboard = ({ logout }) => {
     const [activeList, setActiveList] = useState("homepage_view")
     const [components, setComponents] = useState()
-    const { users } = useContext(UserContext)
-    let activeUserID = parseInt(localStorage.getItem("feelingHeart_customer"))
-    const activeUser = users.find(user => user.id === activeUserID) || {}
 
     const showHomepage = () => (
         <Homepage setActiveList={setActiveList} />
@@ -25,6 +23,11 @@ export const Dashboard = ({ logout }) => {
         <FHChartList setActiveList={setActiveList} />
     )
 
+    const showAboutArtist = () => (
+        <AboutArtist setActiveList={setActiveList}/>
+    )
+
+
     useEffect(() => {
         if (activeList === "homepage_view") {
             setComponents(showHomepage)
@@ -32,26 +35,33 @@ export const Dashboard = ({ logout }) => {
         else if (activeList === "FHChartList") {
             setComponents(showFHChartList)
         }
+        else if (activeList === "aboutArtist") {
+            setComponents(showAboutArtist)
+        }
 
     }, [activeList])
 
     return (
         <>
+        
             <EmotionProvider>
                 <ImageProvider>
                     <SavedChartImageProvider>
                         <SavedChartProvider>
+                            <ShoppingCartProvider>
+                            
                             <div className="mainContainer">
                                 <div className="dashboardContainer">
                                     {showHomepage}
                                     {showFHChartList}
+                                    {showAboutArtist}
+                                    <div className="navBar">
                                     <NavBar setActiveList={setActiveList} logout={logout} />
-
+                                    </div>
                                 </div>
 
                             </div>
-                            <h1>How are you feeling today, {activeUser.firstName}?</h1>
-                            <small>your feelings are valid.</small>
+
                             <div className="listContainer">
                                 <div className="listDisplay">
 
@@ -61,10 +71,12 @@ export const Dashboard = ({ logout }) => {
 
                                 </div>
                             </div>
+                            </ShoppingCartProvider>
                         </SavedChartProvider>
                     </SavedChartImageProvider>
                 </ImageProvider>
             </EmotionProvider>
+            
         </>
     )
 

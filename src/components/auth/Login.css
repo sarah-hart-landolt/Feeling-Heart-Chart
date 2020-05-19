@@ -5,18 +5,20 @@
 .authContainer {
     display: flex;
     padding: 0 10rem;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .h1, h1 {
     font-size: 2.5rem;
-}
-
-.welcome {
-    margin-bottom: 4rem;
+    font-family: Roboto;
 }
 
 fieldset {
     min-width: 0;
+    max-width: 400;
     padding: 1rem 0;
     margin: 0;
     border: 0;
@@ -50,16 +52,15 @@ input[type="password"] {
 }
 
 .container--login {
-    text-align: center;
+    text-align: right;
 }
 
 .form--login {
     font-size: 1.25rem;
     background-position-x: right;
-    background-image: url(feelingheart.png);
     z-index: 1;
     min-height: 25rem;
-    min-width: 45rem;
+    max-width: 45rem;
     background-color: hsla(0,0%,100%,0.40);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
@@ -73,7 +74,7 @@ input[type="password"] {
     background-position-x: right;
     z-index: 1;
     min-height: 25rem;
-    width: 45rem;
+    width: 25rem;
     background-color: hsla(0,0%,100%,0.40);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
@@ -81,4 +82,41 @@ input[type="password"] {
     margin: 0 auto;
     text-align: left;
 
+}
+
+.imgContainer {
+    content: url(fhpgif.gif);
+    width: 47%;
+    height: 47%;
+}
+
+.mainContainer{
+    display: flex;
+}
+.testing{
+    max-height: 500px;
+    object-fit: cover;
+ 
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+
+h3.h3-responsive {
+    font-size: 300%
+}
+
+p {
+    font-size: 150%
+
+}
+
+.authCard {
+    width: 100%;
+    font-weight: 300;
+}
+
+.sarahHartArtLogo{
+    width: 20%;
+    margin:auto;
 }

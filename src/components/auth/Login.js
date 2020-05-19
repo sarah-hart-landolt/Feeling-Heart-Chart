@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import "./Login.css"
+import { MDBBtn } from "mdbreact";
 
 
 const Login = props => {
@@ -55,9 +56,9 @@ const Login = props => {
                         required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit">
+                    <MDBBtn color="btn aqua-gradient" type="submit">
                         Sign in
-                    </button>
+                    </MDBBtn>
                 </fieldset>
             </form>
         </main>

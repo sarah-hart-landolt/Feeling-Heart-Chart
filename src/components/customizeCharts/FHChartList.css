@@ -1,23 +1,36 @@
 .emotions {
-    /* flex-basis: 65%;
-    flex-direction: row; */
     display: grid;
-    /* flex-wrap: wrap; */
-    /* padding: 5%; */
     margin: 4em;
     grid-template-columns: repeat(4, auto);
+    align-items: center;
+    text-align: center;
+}
+
+.editEmotions {
+  display: grid;
+  margin: 4em;
+  grid-template-columns: repeat(4, auto);
+  align-items: center;
+  text-align: center;
+
 }
 
 .emotion {
-  /* flex-basis: 20%; */
   padding: 1em;
 }
+.editEmotion {
+  padding: 0em;
+}
+
 
 .emotionImage{
-  border: 1px solid black;
-  width: 60%;
-  height: 60%;
+  width: 95%;
 }
+.emotion__image{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
 
 .emotion__imageView{
   width: 170px;
@@ -25,7 +38,13 @@
 
 .feelingHeart_imgText{
   width: 70%;
-  margin-left: 7rem;
-
+ 
 }
 
+.modal-body {
+  text-align-last: center
+}
+
+.ImgContainer {
+  text-align: center;
+}

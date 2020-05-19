@@ -3,7 +3,7 @@ import "./savedCharts.css"
 import { SavedChartCard } from "./SavedChartCard"
 import { SavedChartContext } from "./SavedChartProvider"
 
-export const SavedChartList = () => {
+export const SavedChartList = (props) => {
     const { savedCharts }= useContext(SavedChartContext)
     
     const filteredSavedCharts= savedCharts.filter(savedChart => savedChart.name != "" ) || {}
@@ -12,13 +12,14 @@ export const SavedChartList = () => {
 
     return (
      <> <article className="savedChartsList">
-        <h2>My Saved Charts</h2>
+        <h2> <i class="fas fa-save"></i> My Saved Charts</h2>
         <br></br>
             <div>
             {
                 foundSavedCharts.map(foundSavedChart => <SavedChartCard key={foundSavedChart.id} foundSavedChart={foundSavedChart} />)
             }
             </div>
+           
         </article>
      </>
     )

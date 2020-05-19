@@ -1,0 +1,49 @@
+.cartItem {
+    display: flex;
+    flex-direction: row;
+}
+
+.cartItem__info{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 300px;
+}
+
+.savedChartPreview__shoppingCart{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    font-size: 10px;
+    width: 20%;
+    height: 20%;
+    text-align: center;
+    padding: 10;
+
+
+}
+
+.savedChartPreview__container{
+    width: 50%
+}
+
+.savedChartPreviewImages__ShoppingCart {
+    width: 20px;
+}
+
+.savedChartPreview__ShoppingCartEmotionName{
+    font-size: 6px;
+}
+
+.fa-trash-alt:before{
+    text-align: center;
+}
+.feelingHeart_imgTextPreviewSC {
+    width: 40%;
+    margin-left: -3.5rem;
+}
+
+.modal-title {
+    text-align: center;
+    text-transform: uppercase;
+}
+

@@ -1,8 +1,10 @@
-import React, {useContext, useEffect} from "react"
-import { Button } from "reactstrap"
+import React, {useContext} from "react"
+import { Button, Card, CardImg, CardText, CardBody,
+    CardTitle} from "reactstrap"
 import feelingheart from "../auth/feelingheart.png"
 import  "./MakeFHChartPreview.css"
 import { SavedChartContext } from "../savedCharts/SavedChartProvider"
+import { MDBBtn } from "mdbreact";
 
 
 export const MakeFHChartPreviewList = (props) => {
@@ -14,7 +16,6 @@ export const MakeFHChartPreviewList = (props) => {
         const newSavedChartObj = {
             userId: parseInt(localStorage.getItem("feelingHeart_customer")),
             timestamp: Date.now(),
-            price: "$70",
             name: ""
         }       
         
@@ -29,16 +30,29 @@ export const MakeFHChartPreviewList = (props) => {
 
     return (
         <>
-            <article className="MakeFHChartPreview">
-                <h2>Make your own Feeling Chart !</h2>
-                <img className="feelingHeart_img" src={feelingheart} />
-                <Button onClick={()=>{
+         <article className="MakeFHChartPreview">
+         <h2><i class="fas fa-plus"></i> Create New Chart</h2>
+         <br></br>
+         <Card className="cardZoom">
+        <CardImg top width="100%" src={feelingheart} alt="Card image cap"onClick={()=>{
                     saveChart().then(() => {
                         props.setActiveList("FHChartList")
                     })
                     
-                }}>Make New Chart</Button>
-            </article>
+                }} />
+        <CardBody>
+          <CardTitle><h3>Create your own Feeling Heart Chart !</h3></CardTitle>
+          <CardText>Customizable feeling charts made to order. Receive print and digital download once purchased.</CardText>
+          <MDBBtn gradient="purple" onClick={()=>{
+                    saveChart().then(() => {
+                        props.setActiveList("FHChartList")
+                    })
+                    
+                }}>Make New Chart</MDBBtn>
+        </CardBody>
+      </Card>
+      </article>
+
         </>
     )
     }

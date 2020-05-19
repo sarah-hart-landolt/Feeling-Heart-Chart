@@ -10,9 +10,11 @@ import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 import feelingheartText from "../images/feelingheartText.jpg"
 
 
-export const EditFHChartList = ({ foundSavedChart }) => {
+export const EditFHChartList = ({ foundSavedChart, toggleEdit }) => {
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
+
+   
 
 
     const { emotions } = useContext(EmotionContext)
@@ -21,7 +23,7 @@ export const EditFHChartList = ({ foundSavedChart }) => {
     const [selectedEmotion, setSelectedEmotion] = useState()
     const { newSavedCharts, updateSavedChart } = useContext(SavedChartContext)
     const chartName = useRef()
-    const foundSavedChartImages = savedChartImages.filter(savedChartImage => savedChartImage.savedChartId === foundSavedChart.id) || {}
+    const foundSavedChartImages = savedChartImages.filter(savedChartImage => savedChartImage.savedChartId === foundSavedChart.id) || []
     const finalChartImages = foundSavedChartImages.map(fSCI => { return images.find(img => img.id === fSCI.imageId) }) || {}
 
 
@@ -37,6 +39,9 @@ export const EditFHChartList = ({ foundSavedChart }) => {
                 userId: parseInt(localStorage.getItem("feelingHeart_customer")),
                 timestamp: Date.now(),
                 price: "$70",
+            }).then(() => {
+                console.log("Now to toggle the edit modal")
+                toggleEdit()
             })
         }
     }
@@ -44,9 +49,9 @@ export const EditFHChartList = ({ foundSavedChart }) => {
 
     return (
         <>
-            <article className="FHChartList">
-            <div className="imgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
-                <div className="emotions">
+            <article className="EditFHChartList">
+            <div className="ImgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
+                <div className="editEmotions">
                     {
                         emotions.map(emo => {
                             // Find if there are any saved images for this emotion
@@ -76,14 +81,14 @@ export const EditFHChartList = ({ foundSavedChart }) => {
                                 className="form-control"
                             />
                         </div>
-                    </fieldset>
-                </div>
-                <Button onClick={() => {
+                        <Button onClick={() => {
                     editSavedChart()
                 }}>Update Chart</Button>
+                    </fieldset>
+                </div>
             </article>
             <Modal isOpen={modal} toggler={toggle}>
-                <ModalHeader toggler={toggle}>
+                <ModalHeader toggle={toggle}>
                     Choose Your Emotion
                 </ModalHeader>
                 <ModalBody>

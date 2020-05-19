@@ -1,0 +1,16 @@
+.navbar.navbar-light.bg-faded {
+    box-shadow: none;
+    display: flex;
+}
+.navbar {
+    box-shadow: 0;
+}
+
+.NavBar {
+    display: flex;
+    justify-content: stretch;
+}
+
+.ShoppingCart.navbar-brand{
+    display: right;
+}

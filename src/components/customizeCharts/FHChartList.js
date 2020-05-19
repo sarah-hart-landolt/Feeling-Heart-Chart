@@ -8,6 +8,8 @@ import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { ImageContext } from "../images/ImageProvider"
 import { SavedChartContext } from "../savedCharts/SavedChartProvider"
 import feelingheartText from "../images/feelingheartText.jpg"
+import { MDBIcon, MDBBtn } from "mdbreact";
+
 
 
 
@@ -54,7 +56,7 @@ export const FHChartList = (props) => {
         <>
             <article className="FHChartList">
                 <br></br>
-               <div className="imgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
+               <div className="ImgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
                 <div className="emotions">
                     {
                         emotions.map(emo => {
@@ -63,18 +65,18 @@ export const FHChartList = (props) => {
                             const savedChartImage = chartImages.find(filteredSavedChartImageObj => filteredSavedChartImageObj.emotionId === emo.id) || {}
                             const foundImage = images.find(image => image.id === savedChartImage.imageId) || {}
 
-                            return <div key={`emotionCard--${emo.id}`} className={`${emo.emotion} emotion`} onClick={() => {
+                            return <MDBBtn outline color="secondary" key={`emotionCard--${emo.id}`} className={`${emo.emotion} emotion`} onClick={() => {
                                 setSelectedEmotion(emo)
                                 toggle()
                             }}>
                                 <EmotionCard key={`emotion_${emo.id}`} emotion={emo} foundImage={foundImage} />
-                            </div>
+                            </MDBBtn>
                         })
                     }
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="chartName">Save Chart As </label>
+                            <label htmlFor="chartName"><h2>Name Your Chart!</h2> </label>
                             <input
                                 type="text"
                                 id="chartName"
@@ -85,12 +87,12 @@ export const FHChartList = (props) => {
                                 placeholder="Quarantine Feels"
                             />
                         </div>
-                    </fieldset>
-                </div>
-                <Button onClick={() => {
+                        <Button onClick={() => {
                     editSavedChart()
-                    
                 }} >Save Chart</Button>
+                    </fieldset>
+                    
+                </div>
             </article>
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
