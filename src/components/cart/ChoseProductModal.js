@@ -1,8 +1,8 @@
-import React, { useContext,  useState } from "react"
-import {MDBBtn, MDBCard, MDBCardBody, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import React, { useContext, useState } from "react"
+import { MDBBtn, MDBCard, MDBCardBody, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
 import { ShoppingCartContext } from "./ShoppingCartProvider";
 import { Modal, ModalHeader, ModalBody, Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
-import {ShoppingCart} from "./ShoppingCart"
+import { ShoppingCart } from "./ShoppingCart"
 import "./ShoppingCart.css"
 
 
@@ -134,7 +134,7 @@ export const ChoseProductModal = ({ toggleProduct, foundSavedChart }) => {
                 </MDBRow>
 
                 <Modal isOpen={cartModal} toggle={toggleCart} contentClassName="custom-modal-style-cart">
-                    <ModalHeader className="shoppingCartFont" toggle={toggleCart} toggle= {toggleProduct}>
+                    <ModalHeader className="shoppingCartFont" toggle={toggleCart} toggle={toggleProduct}>
                         Shopping Cart
                     </ModalHeader>
                     <ModalBody>

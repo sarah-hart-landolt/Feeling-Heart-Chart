@@ -20,10 +20,10 @@ export const Homepage = (props) => {
                 <div className="homepage_charts">
                     <div><MakeFHChartPreviewList setActiveList={props.setActiveList} /></div>
                     <div><SavedChartList setActiveList={props.setActiveList} /></div>
-                    
+
                 </div>
-        </article>
-    </>
-   )
+            </article>
+        </>
+    )
 
 }
