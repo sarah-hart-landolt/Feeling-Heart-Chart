@@ -45,7 +45,7 @@ Password: 1
 
 ### ERD
 
-![entity realtionship diagram](./FeelingHeartERd.png)
+![entity realtionship diagram]<img src="./FeelingHeartERd.png">
 
 ## Sarah Hart Art Info
 
