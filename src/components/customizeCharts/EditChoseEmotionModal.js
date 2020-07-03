@@ -9,17 +9,17 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
     const { addSavedChartImage, updateSavedChartImage } = useContext(SavedChartImageContext)
     const { images } = useContext(ImageContext)
     const imageArray = images.filter(img => img.emotionId === emotion.id) || []
-    const editSavedChartImage= foundSavedChartImages.find(foundSavedChartImageObject=>foundSavedChartImageObject.emotionId===emotion.id)|| {}
+    const editSavedChartImage = foundSavedChartImages.find(foundSavedChartImageObject => foundSavedChartImageObject.emotionId === emotion.id) || {}
 
-    
+
     const savePaintingRelationship = (imageObject) => {
         const newSavedChartImage = {
             imageId: imageObject.id,
             emotionId: imageObject.emotionId,
             savedChartId: foundSavedChart.id
 
-        }       
-        
+        }
+
         // Need the id of the emotion the user selected
 
         // Need the id of the painting the user selected
@@ -36,15 +36,15 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
             emotionId: updatedImageObject.emotionId,
             savedChartId: editSavedChartImage.savedChartId
 
-        }       
-        
+        }
+
         // Need the id of the emotion the user selected
 
         // Need the id of the painting the user selected
 
         // Do a POST operation to the API to save the relationship
         updateSavedChartImage(saveUpdatedChartImage)
-        
+
 
     }
 
@@ -56,31 +56,33 @@ export const EditChooseEmotionModal = ({ emotion, toggler, foundSavedChartImages
                     {
                         imageArray.map(updatedImageObject => {
                             return <div><img className="emotionImage" src={`${updatedImageObject.url}`} />
-                            <br></br>
-                            <Button onClick={()=>{
-                                updatePaintingRelationship(updatedImageObject)
-                                toggler()}}> {`${emotion.emotion} ${updatedImageObject.id}`}</Button></div>
+                                <br></br>
+                                <Button onClick={() => {
+                                    updatePaintingRelationship(updatedImageObject)
+                                    toggler()
+                                }}> {`${emotion.emotion} ${updatedImageObject.id}`}</Button></div>
                         })
                     }
-    
+
                 </section>
             </>
         )
     } else {
-      return (
+        return (
             <>
                 <h3>Which one for "{emotion.emotion}"?</h3>
                 <section className="emotion__image">
                     {
                         imageArray.map(imageObject => {
                             return <div><img className="emotionImage" src={`${imageObject.url}`} />
-                            <br></br>
-                            <Button onClick={()=>{
-                                savePaintingRelationship(imageObject)
-                                toggler()}}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
+                                <br></br>
+                                <Button onClick={() => {
+                                    savePaintingRelationship(imageObject)
+                                    toggler()
+                                }}> {`${emotion.emotion} ${imageObject.id}`}</Button></div>
                         })
                     }
-    
+
                 </section>
             </>
         )

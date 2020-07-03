@@ -36,7 +36,7 @@ const Register = props => {
                             email: email.current.value,
                             password: password.current.value,
                             firstName: firstName.current.value,
-                            lastName:  lastName.current.value
+                            lastName: lastName.current.value
                         })
                     })
                         .then(_ => _.json())
@@ -62,7 +62,7 @@ const Register = props => {
                         name="firstName"
                         className="form-control"
                         placeholder="First name"
-                        required  />
+                        required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>

@@ -8,7 +8,7 @@ import { SavedChartImageProvider } from "./savedCharts/SavedChartImageProvider"
 import { SavedChartProvider } from "./savedCharts/SavedChartProvider"
 import { NavBar } from "./nav/NavBar"
 import { ShoppingCartProvider } from "./cart/ShoppingCartProvider"
-import { AboutArtist} from "./about/AboutArtist"
+import { AboutArtist } from "./about/AboutArtist"
 
 
 export const Dashboard = ({ logout }) => {
@@ -24,7 +24,7 @@ export const Dashboard = ({ logout }) => {
     )
 
     const showAboutArtist = () => (
-        <AboutArtist setActiveList={setActiveList}/>
+        <AboutArtist setActiveList={setActiveList} />
     )
 
 
@@ -43,40 +43,38 @@ export const Dashboard = ({ logout }) => {
 
     return (
         <>
-        
+
             <EmotionProvider>
                 <ImageProvider>
                     <SavedChartImageProvider>
                         <SavedChartProvider>
                             <ShoppingCartProvider>
-                            
-                            <div className="mainContainer">
-                                <div className="dashboardContainer">
-                                    {showHomepage}
-                                    {showFHChartList}
-                                    {showAboutArtist}
-                                    <div className="navBar">
-                                    <NavBar setActiveList={setActiveList} logout={logout} />
+
+                                <div className="mainContainer">
+                                    <div className="dashboardContainer">
+                                        {showHomepage}
+                                        {showFHChartList}
+                                        {showAboutArtist}
+                                        <div className="navBar">
+                                            <NavBar setActiveList={setActiveList} logout={logout} />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div className="listContainer">
+                                    <div className="listDisplay">
+
+                                        {components}
+
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div className="listContainer">
-                                <div className="listDisplay">
-
-                                    {components}
-
-
-
-                                </div>
-                            </div>
                             </ShoppingCartProvider>
                         </SavedChartProvider>
                     </SavedChartImageProvider>
                 </ImageProvider>
             </EmotionProvider>
-            
+
         </>
     )
 

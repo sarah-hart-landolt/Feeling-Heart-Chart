@@ -3,7 +3,7 @@ import { Collapse, CardBody, Button, Card } from 'reactstrap';
 import Login from "./Login"
 import Register from "./Register"
 import "./Login.css"
-import { MDBBtn} from "mdbreact";
+import { MDBBtn } from "mdbreact";
 import logo from "./logo.png"
 
 export const Auth = ({ toggle }) => {

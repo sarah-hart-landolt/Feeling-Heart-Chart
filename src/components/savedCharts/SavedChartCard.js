@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import "./savedCharts.css"
 import feelingheart from "../auth/feelingheart.png"
 import {
- Modal, ModalHeader, ModalBody, Card, CardBody, CardTitle, CardSubtitle
+    Modal, ModalHeader, ModalBody, Card, CardBody, CardTitle, CardSubtitle
 } from "reactstrap"
 import { SavedChartImageContext } from "../savedCharts/SavedChartImageProvider"
 import { SavedChartPreview } from "./SavedChartPreview"
@@ -62,12 +62,12 @@ export const SavedChartCard = ({ foundSavedChart }) => {
                     </ModalBody>
                 </Modal>
 
-                
+
                 <Modal isOpen={productModal} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
                     toggle={toggleProduct} contentClassName="custom-modal-style-product" >
                     <ModalHeader toggle={toggleProduct}>Choose Product</ModalHeader>
                     <ModalBody>
-                        <ChoseProductModal key={foundSavedChart.id} toggleProduct={toggleProduct} foundSavedChart={foundSavedChart}/>  
+                        <ChoseProductModal key={foundSavedChart.id} toggleProduct={toggleProduct} foundSavedChart={foundSavedChart} />
                     </ModalBody>
                 </Modal>
 
