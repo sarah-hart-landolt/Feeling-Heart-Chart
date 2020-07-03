@@ -11,9 +11,9 @@ export const ImageContext = React.createContext()
  */
 export const ImageProvider = (props) => {
     const [images, setImages] = useState([])
-    
-const getImages = () => {
-    return fetch("http://localhost:8090/images")
+
+    const getImages = () => {
+        return fetch("http://localhost:8090/images")
             .then(res => res.json())
             .then(setImages)
     }
@@ -40,4 +40,4 @@ const getImages = () => {
             {props.children}
         </ImageContext.Provider>
     )
-    }
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import {Dashboard} from "./Dashboard"
-import {Auth} from "./auth/Auth"
+import { Dashboard } from "./Dashboard"
+import { Auth } from "./auth/Auth"
 import { UserProvider } from "./auth/UserProvider"
 
 export const FeelingHeart = () => {
@@ -13,11 +13,11 @@ export const FeelingHeart = () => {
     }
 
     return (
-    
+
         localStorage.getItem("feelingHeart_customer") ? <UserProvider><Dashboard logout={logout} /></UserProvider> : <Auth toggle={toggle} />
 
-    
+
     )
-   
- 
+
+
 }

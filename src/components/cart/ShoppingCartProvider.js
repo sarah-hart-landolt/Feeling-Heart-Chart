@@ -11,22 +11,22 @@ export const ShoppingCartContext = React.createContext()
  */
 export const ShoppingCartProvider = (props) => {
     const [shoppingCarts, setShoppingCarts] = useState([])
-    const [newShoppingCart, setNewShoppingCart]= useState({})
-    
-    
-const deleteShoppingCart = shoppingCartId => {
+    const [newShoppingCart, setNewShoppingCart] = useState({})
+
+
+    const deleteShoppingCart = shoppingCartId => {
         return fetch(`http://localhost:8090/shoppingCarts/${shoppingCartId}`, {
             method: "DELETE"
         })
             .then(getShoppingCarts)
     }
-const getShoppingCarts = () => {
-    return fetch("http://localhost:8090/shoppingCarts")
+    const getShoppingCarts = () => {
+        return fetch("http://localhost:8090/shoppingCarts")
             .then(res => res.json())
             .then(setShoppingCarts)
     }
 
-const updateShoppingCart = shoppingCart => {
+    const updateShoppingCart = shoppingCart => {
         return fetch(`http://localhost:8090/shoppingCarts/${shoppingCart.id}`, {
             method: "PUT",
             headers: {
@@ -34,19 +34,19 @@ const updateShoppingCart = shoppingCart => {
             },
             body: JSON.stringify(shoppingCart)
         })
-        .then(getShoppingCarts)
+            .then(getShoppingCarts)
     }
-    
-const addShoppingCart = shoppingCart => {
+
+    const addShoppingCart = shoppingCart => {
         return fetch("http://localhost:8090/shoppingCarts", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(shoppingCart)
-            })
-                .then(getShoppingCarts)
-        }
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(shoppingCart)
+        })
+            .then(getShoppingCarts)
+    }
 
     /*
         Load all saved charts when the component is mounted. Ensure that
@@ -69,4 +69,4 @@ const addShoppingCart = shoppingCart => {
             {props.children}
         </ShoppingCartContext.Provider>
     )
-    }
+}

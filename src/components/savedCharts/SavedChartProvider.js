@@ -11,22 +11,22 @@ export const SavedChartContext = React.createContext()
  */
 export const SavedChartProvider = (props) => {
     const [savedCharts, setSavedCharts] = useState([])
-    const [newSavedChart, setNewSavedChart]= useState({})
-    
-    
-const deleteSavedChart = savedChartId => {
+    const [newSavedChart, setNewSavedChart] = useState({})
+
+
+    const deleteSavedChart = savedChartId => {
         return fetch(`http://localhost:8090/savedCharts/${savedChartId}`, {
             method: "DELETE"
         })
             .then(getSavedCharts)
     }
-const getSavedCharts = () => {
-    return fetch("http://localhost:8090/savedCharts")
+    const getSavedCharts = () => {
+        return fetch("http://localhost:8090/savedCharts")
             .then(res => res.json())
             .then(setSavedCharts)
     }
 
-const updateSavedChart = savedChart => {
+    const updateSavedChart = savedChart => {
         return fetch(`http://localhost:8090/savedCharts/${savedChart.id}`, {
             method: "PUT",
             headers: {
@@ -34,11 +34,11 @@ const updateSavedChart = savedChart => {
             },
             body: JSON.stringify(savedChart)
         })
-        .then(getSavedCharts)
+            .then(getSavedCharts)
     }
 
-const addSavedChart = savedChart => {
-    return fetch("http://localhost:8090/savedCharts", {
+    const addSavedChart = savedChart => {
+        return fetch("http://localhost:8090/savedCharts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -46,12 +46,12 @@ const addSavedChart = savedChart => {
             body: JSON.stringify(savedChart)
         })
             .then(res => res.json())
-                .then((res) => {
+            .then((res) => {
                 const createdObj = res
                 getSavedCharts()
                 return createdObj
-        })
-            
+            })
+
 
     }
 
@@ -76,4 +76,4 @@ const addSavedChart = savedChart => {
             {props.children}
         </SavedChartContext.Provider>
     )
-    }
+}

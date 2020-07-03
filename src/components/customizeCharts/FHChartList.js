@@ -56,7 +56,7 @@ export const FHChartList = (props) => {
         <>
             <article className="FHChartList">
                 <br></br>
-               <div className="ImgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
+                <div className="ImgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div>
                 <div className="emotions">
                     {
                         emotions.map(emo => {
@@ -88,10 +88,10 @@ export const FHChartList = (props) => {
                             />
                         </div>
                         <Button onClick={() => {
-                    editSavedChart()
-                }} >Save Chart</Button>
+                            editSavedChart()
+                        }} >Save Chart</Button>
                     </fieldset>
-                    
+
                 </div>
             </article>
             <Modal isOpen={modal} toggle={toggle}>

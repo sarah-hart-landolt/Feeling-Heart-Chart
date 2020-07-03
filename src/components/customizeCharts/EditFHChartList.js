@@ -14,7 +14,7 @@ export const EditFHChartList = ({ foundSavedChart, toggleEdit }) => {
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
 
-   
+
 
 
     const { emotions } = useContext(EmotionContext)
@@ -50,7 +50,7 @@ export const EditFHChartList = ({ foundSavedChart, toggleEdit }) => {
     return (
         <>
             <article className="EditFHChartList">
-            <div className="ImgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div> 
+                <div className="ImgContainer"><img className="feelingHeart_imgText" src={feelingheartText} /></div>
                 <div className="editEmotions">
                     {
                         emotions.map(emo => {
@@ -82,8 +82,8 @@ export const EditFHChartList = ({ foundSavedChart, toggleEdit }) => {
                             />
                         </div>
                         <Button onClick={() => {
-                    editSavedChart()
-                }}>Update Chart</Button>
+                            editSavedChart()
+                        }}>Update Chart</Button>
                     </fieldset>
                 </div>
             </article>
