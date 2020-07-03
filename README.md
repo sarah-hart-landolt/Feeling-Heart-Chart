@@ -43,9 +43,9 @@ Password: 1
 
 [reactstrap-date-picker](https://github.com/afialapis/reactstrap-date-picker) for date pickin' made easy!
 
-### ERD
+## ERD
 
-![entity realtionship diagram](./Feeling Heart ERD.png)
+![entity realtionship diagram](./FeelingHeartERD.png)
 
 ## Sarah Hart Art Info
 
